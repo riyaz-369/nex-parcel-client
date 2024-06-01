@@ -5,7 +5,7 @@ const Footer = () => {
     <div>
       <footer className="bg-[#111827]">
         <Container>
-          <div className="footer  text-gray-200 pt-12">
+          <div className="footer text-gray-200 pt-12 grid grid-cols-2 lg:grid-cols-3">
             <nav>
               <h6 className="footer-title">Services</h6>
               <a className="link link-hover">Branding</a>
@@ -27,7 +27,8 @@ const Footer = () => {
               <a className="link link-hover">Cookie policy</a>
             </nav>
           </div>
-          <div className="footer py-12 text-gray-200">
+
+          <div className="footer pb-12 pt-6 text-gray-200 border-t border-gray-600 mt-12">
             <aside className="items-center grid-flow-col">
               <p>
                 <span className="text-3xl">NexParcel</span> <br />

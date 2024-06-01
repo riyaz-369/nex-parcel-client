@@ -1,7 +1,11 @@
+import Banner from "../Banner/Banner";
+import Features from "../Features/Features";
+
 const Home = () => {
   return (
     <div>
-      <h2 className="text-3xl">This will be a home page</h2>
+      <Banner />
+      <Features />
     </div>
   );
 };
