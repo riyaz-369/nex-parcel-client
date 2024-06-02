@@ -52,6 +52,22 @@ const AuthProvider = ({ children }) => {
   useEffect(() => {
     const unSubscribe = onAuthStateChanged(auth, (currentUser) => {
       setUser(currentUser);
+
+      // const userInfo = {
+      //   name: currentUser?.displayName,
+      //   email: currentUser?.email,
+      //   role: "User",
+      // };
+
+      // const getData = async () => {
+      //   const { data } = await axiosCommon.put("/users", userInfo);
+      //   console.log(data);
+      // };
+
+      // if (currentUser) {
+      //   getData();
+      // }
+
       setLoading(false);
     });
     return () => {

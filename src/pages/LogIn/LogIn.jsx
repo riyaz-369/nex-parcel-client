@@ -10,10 +10,12 @@ import toast from "react-hot-toast";
 import Container from "../../components/Shared/Container";
 import Button from "../../components/Shared/Button";
 import { FcGoogle } from "react-icons/fc";
+import useAxiosCommon from "../../hooks/useAxiosCommon";
 
 const LogIn = () => {
   const { googleSignIn, signIn } = useAuth();
   const [showPassword, setShowPassword] = useState(false);
+  const axiosCommon = useAxiosCommon();
 
   const {
     register,
@@ -33,22 +35,26 @@ const LogIn = () => {
       navigate("/");
     } catch (err) {
       toast.error(err.message);
-      if (err.code) {
-        toast.error("Email already in use.");
-      }
     }
   };
 
   const handleGoogleSignIn = async () => {
     try {
       const result = await googleSignIn();
-      console.log(result);
-      toast.success("Login successful.");
+      const user = result.user;
+      const userInfo = {
+        name: user?.displayName,
+        email: user?.email,
+        role: "User",
+        photoURL: user?.photoURL,
+      };
+      const { data } = await axiosCommon.post("/users", userInfo);
+      if (data.insertedId) {
+        toast.success("Login successful.");
+        navigate("/");
+      }
     } catch (err) {
       toast.error(err.message);
-      if (err.code) {
-        toast.error("Email already in use.");
-      }
     }
   };
 

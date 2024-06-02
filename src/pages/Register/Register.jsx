@@ -14,7 +14,7 @@ import uploadImage from "../../apis/utilitis";
 import useAxiosCommon from "../../hooks/useAxiosCommon";
 
 const Register = () => {
-  const { createUser, updatedProfile, googleSignIn } = useAuth();
+  const { createUser, updatedProfile, googleSignIn, user } = useAuth();
   const [showPassword, setShowPassword] = useState(false);
   const axiosCommon = useAxiosCommon();
 
@@ -60,12 +60,20 @@ const Register = () => {
   const handleGoogleSignIn = async () => {
     try {
       const result = await googleSignIn();
-      console.log(result);
+      const user = result.user;
+      const userInfo = {
+        name: user?.displayName,
+        email: user?.email,
+        role: "User",
+        photoURL: user?.photoURL,
+      };
+      const { data } = await axiosCommon.post("/users", userInfo);
+      if (data.insertedId) {
+        toast.success("Login successful.");
+        navigate("/");
+      }
     } catch (err) {
       toast.error(err.message);
-      if (err.code) {
-        toast.error("Email already in use.");
-      }
     }
   };
 
