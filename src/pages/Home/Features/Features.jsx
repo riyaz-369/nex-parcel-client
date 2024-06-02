@@ -8,7 +8,7 @@ import Statistics from "./Statistics";
 
 const Features = () => {
   return (
-    <Container>
+    <Container my={true}>
       <SectionTitle
         heading="Our Features"
         subtitle="Lorem ipsum dolor sit amet consectetur, adipisicing elit. Maiores optio accusantium labore tenetur officiis culpa in a sint eveniet, nisi maxime veritatis doloribus"

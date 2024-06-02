@@ -4,7 +4,7 @@ import SectionTitle from "../../../components/Shared/SectionTitle";
 
 const DeliveryMen = () => {
   return (
-    <Container>
+    <Container my={true}>
       <SectionTitle
         heading="Top Delivery Mens"
         subtitle="Our top delivery men"

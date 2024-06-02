@@ -1,10 +1,8 @@
-import Container from "../../../components/Shared/Container";
-
 const Footer = () => {
   return (
     <div>
       <footer className="bg-[#111827]">
-        <Container>
+        <div className="max-w-7xl mx-auto">
           <div className="footer text-gray-200 pt-12 grid grid-cols-2 lg:grid-cols-3">
             <nav>
               <h6 className="footer-title">Services</h6>
@@ -73,7 +71,7 @@ const Footer = () => {
               </div>
             </nav>
           </div>
-        </Container>
+        </div>
       </footer>
     </div>
   );
