@@ -10,6 +10,7 @@ import toast from "react-hot-toast";
 import Container from "../../components/Shared/Container";
 import Button from "../../components/Shared/Button";
 import { FcGoogle } from "react-icons/fc";
+import uploadImage from "../../apis/utilitis";
 
 const Register = () => {
   const { createUser, updatedProfile, googleSignIn } = useAuth();
@@ -23,16 +24,25 @@ const Register = () => {
   const navigate = useNavigate();
 
   const handleRegister = async (formData) => {
-    const { name, email, photo, password } = formData;
+    const image = formData.image[0];
+    const { name, email, password } = formData;
+
+    // console.log(image.name);
+
+    // console.log(formData);
 
     try {
       const result = await createUser(email, password);
+
+      const hostImage = await uploadImage(image);
+      console.log(hostImage);
+
       console.log(result.user);
       reset();
       navigate("/");
 
       // update user profile
-      await updatedProfile(name, photo);
+      await updatedProfile(name, image);
     } catch (err) {
       toast.error(err.message);
     }
@@ -129,7 +139,9 @@ const Register = () => {
                   </label>
                   <input
                     type="file"
+                    name="image"
                     className="px-4 py-2 border-2 border-dashed rounded-lg border-[#F43F5E] bg-[#F43F5E] bg-opacity-10 file-input file-input-secondary w-1/2"
+                    {...register("image", { required: true })}
                   />
                 </div>
 
