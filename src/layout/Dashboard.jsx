@@ -3,12 +3,14 @@ import Sidebar from "../components/Dashboard/Sidebar/Sidebar";
 
 const Dashboard = () => {
   return (
-    <div>
+    <div className="relative min-h-screen md:flex">
       <div>
         <Sidebar />
       </div>
-      <div>
-        <Outlet />
+      <div className="md:flex-1 md:ml-72 max-w-6xl mx-auto">
+        <div className="p-8">
+          <Outlet />
+        </div>
       </div>
     </div>
   );

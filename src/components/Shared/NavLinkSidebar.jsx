@@ -4,11 +4,11 @@ const NavLinkSidebar = ({ address, label, icon: Icon }) => {
   return (
     <Link
       to={address}
-      className={`flex items-center gap-2 p-3 text-base transition-colors duration-300 transform hover:bg-[#111827] ${
+      className={`flex items-center gap-2 p-3 text-base transition-colors duration-300 transform hover:bg-base-300 ${
         label === "Logout" && "text-[#F43F5E]"
       } font-bold`}
     >
-      <span className="text-2xl">{Icon && <Icon />}</span>
+      <span className="text-[22px]">{Icon && <Icon />}</span>
       <span>{label}</span>
     </Link>
   );

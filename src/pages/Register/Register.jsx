@@ -158,7 +158,7 @@ const Register = () => {
                     <input
                       type="file"
                       name="image"
-                      className="px-4 py-2 w-full border-2 border-dashed rounded-lg border-[#F43F5E] bg-[#F43F5E] bg-opacity-10 file-input file-input-secondary file-input-md"
+                      className="px-4 py-2 w-full border-2 border-dashed rounded-lg border-[#F43F5E] bg-[#F43F5E] bg-opacity-10"
                       {...register("image", { required: true })}
                     />
                   </div>

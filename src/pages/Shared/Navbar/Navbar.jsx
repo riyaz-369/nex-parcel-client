@@ -57,7 +57,7 @@ const Navbar = () => {
               title="NexParcel - Home"
               className="text-xl md:text-3xl font-bold flex items-center gap-2 text-white"
             >
-              <img className="w-7 md:w-9" src="" />
+              <img className="w-10 md:w-12" src="/logo.png" />
               <h1>NexParcel</h1>
             </Link>
           </div>
