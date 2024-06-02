@@ -3,14 +3,14 @@ import NavLinkSidebar from "../Shared/NavLinkSidebar";
 import { CgLogOut } from "react-icons/cg";
 import { MdDashboard } from "react-icons/md";
 
-const ProfileDropdown = () => {
+const ProfileDropdown = ({ handleLogOut }) => {
   const { user } = useAuth();
 
   return (
     <div className="dropdown dropdown-end">
       <div tabIndex={0} className="btn btn-ghost btn-circle avatar">
         <div title={user?.displayName} className="rounded-full">
-          <img src={user?.photoURL} />
+          <img referrerPolicy="no-referrer" src={user?.photoURL} />
         </div>
       </div>
       <div>
@@ -32,7 +32,9 @@ const ProfileDropdown = () => {
               label="Dashboard"
               icon={MdDashboard}
             />
-            <NavLinkSidebar label="Logout" icon={CgLogOut} />
+            <button onClick={handleLogOut} className="w-full">
+              <NavLinkSidebar label="Logout" icon={CgLogOut} />
+            </button>
           </div>
         </div>
       </div>

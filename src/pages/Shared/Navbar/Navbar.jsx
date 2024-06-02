@@ -7,7 +7,11 @@ import ThemeInput from "../../../components/Theme/ThemeInput";
 import ProfileDropdown from "../../../components/Dropdown/ProfileDropdown";
 
 const Navbar = () => {
-  const { user } = useAuth();
+  const { user, logOut } = useAuth();
+
+  const handleLogOut = async () => {
+    await logOut();
+  };
 
   const navLinks = (
     <>
@@ -74,7 +78,7 @@ const Navbar = () => {
                   </Link>
                 </div>
               ) : (
-                <ProfileDropdown />
+                <ProfileDropdown handleLogOut={handleLogOut} />
               )}
             </div>
           </div>

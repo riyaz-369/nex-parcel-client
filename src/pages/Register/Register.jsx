@@ -11,10 +11,13 @@ import Container from "../../components/Shared/Container";
 import Button from "../../components/Shared/Button";
 import { FcGoogle } from "react-icons/fc";
 import uploadImage from "../../apis/utilitis";
+import useAxiosCommon from "../../hooks/useAxiosCommon";
 
 const Register = () => {
   const { createUser, updatedProfile, googleSignIn } = useAuth();
   const [showPassword, setShowPassword] = useState(false);
+  const axiosCommon = useAxiosCommon();
+
   const {
     register,
     handleSubmit,
@@ -25,32 +28,34 @@ const Register = () => {
 
   const handleRegister = async (formData) => {
     const image = formData.image[0];
-    const { name, email, password } = formData;
-
-    // console.log(image.name);
-
-    // console.log(formData);
+    const { name, email, password, role } = formData;
 
     try {
-      const result = await createUser(email, password);
-
-      const hostImage = await uploadImage(image);
-      console.log(hostImage);
-
-      console.log(result.user);
+      await createUser(email, password);
       reset();
-      navigate("/");
+      const hostImage = await uploadImage(image);
+      const userInfo = {
+        name,
+        email,
+        role,
+        photoURL: hostImage,
+      };
+
+      const { data } = await axiosCommon.post("/users", userInfo);
+      if (data.insertedId) {
+        toast.success("Registration successful.");
+        navigate("/");
+      }
 
       // update user profile
-      await updatedProfile(name, image);
+      await updatedProfile(name, hostImage);
     } catch (err) {
       toast.error(err.message);
+      if (err.code) {
+        toast.error("Email already in use.");
+      }
     }
   };
-
-  // if (error.code) {
-  //   toast.error("Email already in use.");
-  // }
 
   const handleGoogleSignIn = async () => {
     try {
@@ -58,11 +63,14 @@ const Register = () => {
       console.log(result);
     } catch (err) {
       toast.error(err.message);
+      if (err.code) {
+        toast.error("Email already in use.");
+      }
     }
   };
 
   const inputStyle =
-    "block w-full px-4 py-2 border border-[#F43F5E] rounded-lg focus:border-[#F43F5E] focus:ring-opacity-40 focus:outline-none focus:ring focus:ring-[#F43F5E]";
+    "block w-full px-4 py-3 border border-opacity-30 border-[#F43F5E] rounded-lg focus:border-[#F43F5E] focus:ring-opacity-40 focus:outline-none focus:ring focus:ring-[#F43F5E]";
 
   return (
     <div className="bg-base-200 py-8">
@@ -81,7 +89,7 @@ const Register = () => {
               </p>
               <a
                 onClick={handleGoogleSignIn}
-                className="flex items-center justify-center mt-4  border rounded-lg btn-outline btn hover:bg-gray-50 hover:text-black"
+                className="flex items-center justify-center mt-4  border border-opacity-30 border-[#F43F5E] hover:border-[#F43F5E] rounded-lg btn-outline btn hover:bg-gray-50 hover:text-black"
               >
                 <div className="text-3xl">
                   <FcGoogle />
@@ -96,7 +104,7 @@ const Register = () => {
                   Already have an account?{" "}
                   <Link
                     to="/login"
-                    className="hover:text-[#F43F5E] transition-colors hover:underline font-bold text-[#111827] text-lg"
+                    className="hover:text-[#F43F5E] transition-colors underline font-bold text-[#111827] text-lg"
                   >
                     Login
                   </Link>
@@ -133,16 +141,35 @@ const Register = () => {
                     <p className="text-red-600">Email is required</p>
                   )}
                 </div>
-                <div className="mt-4">
-                  <label className="block mb-2 text-sm font-medium text-gray-600">
-                    Profile Picture
-                  </label>
-                  <input
-                    type="file"
-                    name="image"
-                    className="px-4 py-2 border-2 border-dashed rounded-lg border-[#F43F5E] bg-[#F43F5E] bg-opacity-10 file-input file-input-secondary w-1/2"
-                    {...register("image", { required: true })}
-                  />
+
+                <div className="lg:flex gap-4 mt-4">
+                  <div className="lg:w-1/2">
+                    <label className="block mb-2 text-sm font-medium text-gray-600">
+                      Profile Picture
+                    </label>
+                    <input
+                      type="file"
+                      name="image"
+                      className="px-4 py-2 w-full border-2 border-dashed rounded-lg border-[#F43F5E] bg-[#F43F5E] bg-opacity-10 file-input file-input-secondary file-input-md"
+                      {...register("image", { required: true })}
+                    />
+                  </div>
+                  {/* USER ROLE */}
+                  <div className="lg:w-1/2 mt-4 lg:mt-0">
+                    <label className="block mb-2 text-sm font-medium text-gray-600">
+                      Role
+                    </label>
+                    <select
+                      className={`${inputStyle} py-3`}
+                      {...register("role", { required: true })}
+                    >
+                      <option selected value="User">
+                        User
+                      </option>
+                      <option value="Delivery Man">Delivery Man</option>
+                      <option disabled>Admin</option>
+                    </select>
+                  </div>
                 </div>
 
                 <div className="mt-4">
