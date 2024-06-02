@@ -2,7 +2,7 @@ import loginAnm from "../../assets/animation/login.json";
 import Lottie from "lottie-react";
 import { Helmet } from "react-helmet";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
@@ -16,6 +16,9 @@ const LogIn = () => {
   const { googleSignIn, signIn } = useAuth();
   const [showPassword, setShowPassword] = useState(false);
   const axiosCommon = useAxiosCommon();
+  const navigate = useNavigate();
+  const location = useLocation();
+  const from = location.state?.from?.pathname || "/";
 
   const {
     register,
@@ -23,7 +26,6 @@ const LogIn = () => {
     reset,
     formState: { errors },
   } = useForm();
-  const navigate = useNavigate();
 
   const handleRegister = async (formData) => {
     const { email, password } = formData;
@@ -32,7 +34,7 @@ const LogIn = () => {
       await signIn(email, password);
       reset();
       toast.success("Login successful.");
-      navigate("/");
+      navigate(from, { replace: true });
     } catch (err) {
       toast.error(err.message);
     }
@@ -41,6 +43,8 @@ const LogIn = () => {
   const handleGoogleSignIn = async () => {
     try {
       const result = await googleSignIn();
+      toast.success("Login successful.");
+      navigate(from, { replace: true });
       const user = result.user;
       const userInfo = {
         name: user?.displayName,
@@ -48,11 +52,7 @@ const LogIn = () => {
         role: "User",
         photoURL: user?.photoURL,
       };
-      const { data } = await axiosCommon.post("/users", userInfo);
-      if (data.insertedId) {
-        toast.success("Login successful.");
-        navigate("/");
-      }
+      await axiosCommon.post("/users", userInfo);
     } catch (err) {
       toast.error(err.message);
     }

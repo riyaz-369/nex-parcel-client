@@ -17,6 +17,7 @@ const Register = () => {
   const { createUser, updatedProfile, googleSignIn, user } = useAuth();
   const [showPassword, setShowPassword] = useState(false);
   const axiosCommon = useAxiosCommon();
+  const navigate = useNavigate();
 
   const {
     register,
@@ -24,7 +25,6 @@ const Register = () => {
     reset,
     formState: { errors },
   } = useForm();
-  const navigate = useNavigate();
 
   const handleRegister = async (formData) => {
     const image = formData.image[0];
