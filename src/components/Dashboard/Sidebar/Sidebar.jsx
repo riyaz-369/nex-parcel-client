@@ -13,6 +13,7 @@ import { FaUsers } from "react-icons/fa";
 import { FaPeopleCarry } from "react-icons/fa";
 import { BsGraphUpArrow } from "react-icons/bs";
 import ThemeInput from "../../Theme/ThemeInput";
+import logo from "../../../assets/icons/logo.png";
 
 const Sidebar = () => {
   const [isActive, setActive] = useState(false);
@@ -50,12 +51,7 @@ const Sidebar = () => {
                 to="/"
                 className="text-xl md:text-3xl font-bold flex items-center gap-2"
               >
-                <img
-                  className="md:block"
-                  src="./logo.png"
-                  alt="NP"
-                  width="42"
-                />
+                <img className="md:block" src={logo} width="42" />
                 {/* <h3 className="text-2xl lg:text-3xl font-semibold">
                   NexParcel
                 </h3> */}

@@ -9,24 +9,26 @@ import "react-datepicker/dist/react-datepicker.css";
 import { useEffect } from "react";
 import "react-phone-number-input/style.css";
 import PhoneInput from "react-phone-number-input";
-import useAxiosCommon from "../../../hooks/useAxiosCommon";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
+import useAxiosSecure from "../../../hooks/useAxiosSecure";
 
 const BookParcel = () => {
   const [price, setPrice] = useState(0);
   const { user } = useAuth();
   const { register, handleSubmit, watch, control, setValue } = useForm();
   const [startDate, setStartDate] = useState(new Date());
-  const axiosCommon = useAxiosCommon();
+  const axiosSecure = useAxiosSecure();
   const navigate = useNavigate();
 
   const handleBook = async (formData) => {
-    const { data } = await axiosCommon.post("/bookings", {
+    const { data } = await axiosSecure.post("/bookings", {
       ...formData,
       status: "pending",
+      requested_delivery_date: startDate,
+      booking_date: new Date(),
     });
-    console.log(data);
+
     if (data.insertedId) {
       toast.success("Booked your parcel successfully");
       navigate("/dashboard/my-parcel");

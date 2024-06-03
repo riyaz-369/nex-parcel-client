@@ -7,8 +7,8 @@ const Dashboard = () => {
       <div>
         <Sidebar />
       </div>
-      <div className="md:flex-1 md:ml-64 lg:ml-72 max-w-6xl mx-auto">
-        <div className="p-8">
+      <div className="md:flex-1 md:ml-64">
+        <div className="py-8">
           <Outlet />
         </div>
       </div>
