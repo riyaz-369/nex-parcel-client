@@ -12,6 +12,7 @@ import { BsInboxes } from "react-icons/bs";
 import { FaUsers } from "react-icons/fa";
 import { FaPeopleCarry } from "react-icons/fa";
 import { BsGraphUpArrow } from "react-icons/bs";
+import ThemeInput from "../../Theme/ThemeInput";
 
 const Sidebar = () => {
   const [isActive, setActive] = useState(false);
@@ -38,23 +39,29 @@ const Sidebar = () => {
 
       {/* Sidebar */}
       <div
-        className={`z-10 md:fixed flex flex-col justify-between overflow-x-hidden bg-base-200 w-72 space-y-6 px-2 py-4 absolute inset-y-0 left-0 transform ${
+        className={`z-10 md:fixed flex flex-col justify-between overflow-x-hidden bg-base-200 w-64 space-y-6 px-2 py-4 absolute inset-y-0 left-0 transform ${
           isActive && "-translate-x-full"
         }  md:translate-x-0 transition duration-200 ease-in-out`}
       >
         <div>
           <div>
             <div className="w-full md:flex px-4 py-2 shadow-lg">
-              <Link to="/" className="flex items-center gap-3">
+              <Link
+                to="/"
+                className="text-xl md:text-3xl font-bold flex items-center gap-2"
+              >
                 <img
                   className="md:block"
                   src="./logo.png"
-                  alt="logo"
-                  width="40"
+                  alt="NP"
+                  width="42"
                 />
-                <h3 className="text-2xl lg:text-3xl font-semibold">
+                {/* <h3 className="text-2xl lg:text-3xl font-semibold">
                   NexParcel
-                </h3>
+                </h3> */}
+                <h1>
+                  Nex<span className="text-[#F43F5E]">Parcel</span>
+                </h1>
               </Link>
             </div>
           </div>
@@ -111,6 +118,10 @@ const Sidebar = () => {
           <hr />
           <nav>
             {/* COMMON */}
+            <ul className="flex gap-3 my-4 ml-3">
+              <ThemeInput />
+              <p className="font-bold">Theme</p>
+            </ul>
             <NavLinkSidebar address="" label="My Profile" icon={CgProfile} />
             <NavLinkSidebar label="Logout" icon={CgLogOut} />
           </nav>

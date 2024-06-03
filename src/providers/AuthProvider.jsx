@@ -11,6 +11,7 @@ import {
 } from "firebase/auth";
 import { createContext, useEffect, useState } from "react";
 import app from "../firebase/firebase.config";
+import useAxiosCommon from "../hooks/useAxiosCommon";
 
 const auth = getAuth(app);
 const googleProvider = new GoogleAuthProvider();
@@ -20,6 +21,7 @@ export const AuthContext = createContext(null);
 const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
+  const axiosCommon = useAxiosCommon();
 
   const createUser = (email, password) => {
     setLoading(true);
@@ -49,25 +51,27 @@ const AuthProvider = ({ children }) => {
     return signOut(auth);
   };
 
+  const saveUserInDB = (userDetail) => {
+    console.log(userDetail);
+    const userInfo = {
+      name: userDetail?.displayName,
+      email: userDetail?.email,
+      photoURL: userDetail?.photoURL,
+      role: "User",
+    };
+    console.log(userInfo);
+    const getData = async () => {
+      const { data } = await axiosCommon.post("/users", userInfo);
+      console.log(data);
+    };
+    if (userDetail) {
+      getData();
+    }
+  };
+
   useEffect(() => {
     const unSubscribe = onAuthStateChanged(auth, (currentUser) => {
       setUser(currentUser);
-
-      // const userInfo = {
-      //   name: currentUser?.displayName,
-      //   email: currentUser?.email,
-      //   role: "User",
-      // };
-
-      // const getData = async () => {
-      //   const { data } = await axiosCommon.put("/users", userInfo);
-      //   console.log(data);
-      // };
-
-      // if (currentUser) {
-      //   getData();
-      // }
-
       setLoading(false);
     });
     return () => {
@@ -82,6 +86,7 @@ const AuthProvider = ({ children }) => {
     signIn,
     googleSignIn,
     updatedProfile,
+    saveUserInDB,
     logOut,
   };
 

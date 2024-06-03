@@ -14,7 +14,7 @@ import uploadImage from "../../apis/utilitis";
 import useAxiosCommon from "../../hooks/useAxiosCommon";
 
 const Register = () => {
-  const { createUser, updatedProfile, googleSignIn, user } = useAuth();
+  const { createUser, updatedProfile, googleSignIn, saveUserInDB } = useAuth();
   const [showPassword, setShowPassword] = useState(false);
   const axiosCommon = useAxiosCommon();
   const navigate = useNavigate();
@@ -60,18 +60,10 @@ const Register = () => {
   const handleGoogleSignIn = async () => {
     try {
       const result = await googleSignIn();
-      const user = result.user;
-      const userInfo = {
-        name: user?.displayName,
-        email: user?.email,
-        role: "User",
-        photoURL: user?.photoURL,
-      };
-      const { data } = await axiosCommon.post("/users", userInfo);
-      if (data.insertedId) {
-        toast.success("Login successful.");
-        navigate("/");
-      }
+      const userDetail = result?.user;
+      saveUserInDB(userDetail);
+      toast.success("Login successful.");
+      navigate("/");
     } catch (err) {
       toast.error(err.message);
     }

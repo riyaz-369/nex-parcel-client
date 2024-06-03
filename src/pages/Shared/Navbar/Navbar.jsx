@@ -32,7 +32,7 @@ const Navbar = () => {
   );
 
   return (
-    <div className="sticky top-0 z-50 py-2 shadow-lg bg-[#111827]">
+    <div className="sticky top-0 z-50 py-2 shadow-md bg-base-100">
       <div>
         <div className="navbar max-w-7xl mx-auto">
           <div className="navbar-start">
@@ -40,7 +40,7 @@ const Navbar = () => {
               <div
                 tabIndex={0}
                 role="button"
-                className="btn btn-ghost lg:hidden text-white"
+                className="btn btn-ghost lg:hidden"
               >
                 <span className="text-xl">
                   <FiAlignLeft />
@@ -55,10 +55,12 @@ const Navbar = () => {
             </div>
             <Link
               title="NexParcel - Home"
-              className="text-xl md:text-3xl font-bold flex items-center gap-2 text-white"
+              className="text-xl md:text-3xl font-bold flex items-center gap-2"
             >
-              <img className="w-10 md:w-12" src="/logo.png" />
-              <h1>NexParcel</h1>
+              <img className="w-8 md:w-11" src="/logo.png" />
+              <h1>
+                Nex<span className="text-[#F43F5E]">Parcel</span>
+              </h1>
             </Link>
           </div>
           <div className="navbar-end flex gap-12">

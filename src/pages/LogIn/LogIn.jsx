@@ -10,12 +10,10 @@ import toast from "react-hot-toast";
 import Container from "../../components/Shared/Container";
 import Button from "../../components/Shared/Button";
 import { FcGoogle } from "react-icons/fc";
-import useAxiosCommon from "../../hooks/useAxiosCommon";
 
 const LogIn = () => {
-  const { googleSignIn, signIn } = useAuth();
+  const { googleSignIn, signIn, saveUserInDB } = useAuth();
   const [showPassword, setShowPassword] = useState(false);
-  const axiosCommon = useAxiosCommon();
   const navigate = useNavigate();
   const location = useLocation();
   const from = location.state?.from?.pathname || "/";
@@ -43,16 +41,10 @@ const LogIn = () => {
   const handleGoogleSignIn = async () => {
     try {
       const result = await googleSignIn();
+      const userDetail = result?.user;
+      saveUserInDB(userDetail);
       toast.success("Login successful.");
       navigate(from, { replace: true });
-      const user = result.user;
-      const userInfo = {
-        name: user?.displayName,
-        email: user?.email,
-        role: "User",
-        photoURL: user?.photoURL,
-      };
-      await axiosCommon.post("/users", userInfo);
     } catch (err) {
       toast.error(err.message);
     }
