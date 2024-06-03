@@ -1,7 +1,12 @@
 import { FaRegEdit } from "react-icons/fa";
 import { RiChatDeleteLine } from "react-icons/ri";
+import useAxiosSecure from "../../hooks/useAxiosSecure";
+import toast from "react-hot-toast";
+import Swal from "sweetalert2";
 
 const MyParcelRow = ({ bookingParcel, idx, refetch }) => {
+  const axiosSecure = useAxiosSecure();
+
   const {
     _id,
     parcel_type,
@@ -11,8 +16,27 @@ const MyParcelRow = ({ bookingParcel, idx, refetch }) => {
     status,
   } = bookingParcel;
 
-  const handleCancel = (id) => {
-    console.log(id);
+  const handleCancel = async (id) => {
+    const doCancel = async () => {
+      const { data } = await axiosSecure.delete(`/bookings/${id}`);
+      if (data.deletedCount > 0) {
+        toast.success("Canceled your booking");
+        refetch();
+      }
+    };
+
+    Swal.fire({
+      title: "Are you sure?",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#4ade80",
+      cancelButtonColor: "#F43F5E",
+      confirmButtonText: "Yes",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        doCancel();
+      }
+    });
   };
 
   return (
