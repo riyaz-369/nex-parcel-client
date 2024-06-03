@@ -3,6 +3,7 @@ import { RiChatDeleteLine } from "react-icons/ri";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import toast from "react-hot-toast";
 import Swal from "sweetalert2";
+import { Link } from "react-router-dom";
 
 const MyParcelRow = ({ bookingParcel, idx, refetch }) => {
   const axiosSecure = useAxiosSecure();
@@ -11,7 +12,7 @@ const MyParcelRow = ({ bookingParcel, idx, refetch }) => {
     _id,
     parcel_type,
     requested_delivery_date,
-    approximate_delivery_ate,
+    approximate_delivery_date,
     booking_date,
     status,
   } = bookingParcel;
@@ -44,14 +45,17 @@ const MyParcelRow = ({ bookingParcel, idx, refetch }) => {
       <th>{idx + 1}</th>
       <td>{parcel_type}</td>
       <td>{new Date(requested_delivery_date).toDateString()}</td>
-      <td>{approximate_delivery_ate}</td>
+      <td>{approximate_delivery_date}</td>
       <td>{new Date(booking_date).toDateString()}</td>
       <td>{"989898098909"}</td>
       <td>{status}</td>
       <td className="flex gap-3">
-        <button className="text-green-400">
+        <Link
+          to={`/dashboard/update-booking/${_id}`}
+          className="text-green-400"
+        >
           <FaRegEdit size={23} />
-        </button>
+        </Link>
         <button onClick={() => handleCancel(_id)} className="text-red-400">
           <RiChatDeleteLine size={24} />
         </button>

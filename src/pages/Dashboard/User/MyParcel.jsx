@@ -22,8 +22,6 @@ const MyParcel = () => {
     },
   });
 
-  console.log(myBookings);
-
   if (isLoading) return <LoadingSpinner />;
 
   return (
@@ -36,7 +34,7 @@ const MyParcel = () => {
         <table className="table">
           <thead>
             <tr className="text-base">
-              <th></th>
+              <th>SL</th>
               <th>Parcel Type</th>
               <th>Requested Delivery Date</th>
               <th>Approximate Delivery Date</th>

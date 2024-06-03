@@ -15,6 +15,7 @@ import AllParcel from "../pages/Dashboard/Admin/AllParcel";
 import AllUsers from "../pages/Dashboard/Admin/AllUsers";
 import AllDeliveryMan from "../pages/Dashboard/Admin/AllDeliveryMan";
 import AdminStatistics from "../pages/Dashboard/Admin/AdminStatistics";
+import UpdateBooking from "../pages/Dashboard/User/UpdateBooking";
 
 const router = createBrowserRouter([
   {
@@ -65,6 +66,16 @@ const router = createBrowserRouter([
             <MyParcel />
           </PrivateRoute>
         ),
+      },
+      {
+        path: "update-booking/:id",
+        element: (
+          <PrivateRoute>
+            <UpdateBooking />
+          </PrivateRoute>
+        ),
+        loader: ({ params }) =>
+          fetch(`${import.meta.env.VITE_API_URL}/booking/${params.id}`),
       },
       // DELIVERY MAN
       {
