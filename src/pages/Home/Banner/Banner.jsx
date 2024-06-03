@@ -1,5 +1,5 @@
 import banner from "../../../assets/banner.jpg";
-import Button from "../../../components/Shared/Button";
+import CustomButton from "../../../components/Shared/CustomButton";
 
 const Banner = () => {
   return (
@@ -16,7 +16,7 @@ const Banner = () => {
             excepturi exercitationem quasi. In deleniti eaque aut repudiandae et
             a id nisi.
           </p>
-          <Button btnText="Search" />
+          <CustomButton btnText="Search" />
         </div>
       </div>
     </div>

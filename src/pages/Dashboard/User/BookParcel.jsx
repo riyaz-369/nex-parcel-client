@@ -3,7 +3,7 @@ import { useForm, Controller } from "react-hook-form";
 import useAuth from "../../../hooks/useAuth";
 import ReactDatePicker from "react-datepicker";
 import { useState } from "react";
-import Button from "../../../components/Shared/Button";
+import CustomButton from "../../../components/Shared/CustomButton";
 import Container from "../../../components/Shared/Container";
 import "react-datepicker/dist/react-datepicker.css";
 import { useEffect } from "react";
@@ -228,7 +228,7 @@ const BookParcel = () => {
             </div>
           </div>
           <div className="mt-6">
-            <Button btnText="Book" pxLg={true} />
+            <CustomButton btnText="Book" pxLg={true} />
           </div>
         </form>
       </div>

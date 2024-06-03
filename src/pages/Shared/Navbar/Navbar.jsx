@@ -1,5 +1,5 @@
 import { FiAlignLeft } from "react-icons/fi";
-import Button from "../../../components/Shared/Button";
+import CustomButton from "../../../components/Shared/CustomButton";
 import useAuth from "../../../hooks/useAuth";
 import NavLinks from "../../../components/Shared/NavLinks";
 import { Link } from "react-router-dom";
@@ -20,12 +20,12 @@ const Navbar = () => {
       {!user ? (
         <div className="space-y-3 lg:hidden">
           <Link to="/login">
-            <Button btnText="Login" />
+            <CustomButton btnText="Login" />
           </Link>
         </div>
       ) : (
         <Link className="flex lg:hidden">
-          <Button btnText="Logout" />
+          <CustomButton btnText="Logout" />
         </Link>
       )}
     </>
@@ -76,7 +76,7 @@ const Navbar = () => {
               {!user ? (
                 <div className="space-x-3 hidden lg:flex">
                   <Link to="/login">
-                    <Button btnText="Login" />
+                    <CustomButton btnText="Login" />
                   </Link>
                 </div>
               ) : (

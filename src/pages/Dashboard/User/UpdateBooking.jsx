@@ -2,7 +2,7 @@ import { Helmet } from "react-helmet";
 import { useForm, Controller } from "react-hook-form";
 import ReactDatePicker from "react-datepicker";
 import { useState } from "react";
-import Button from "../../../components/Shared/Button";
+import CustomButton from "../../../components/Shared/CustomButton";
 import Container from "../../../components/Shared/Container";
 import "react-datepicker/dist/react-datepicker.css";
 import { useEffect } from "react";
@@ -255,7 +255,7 @@ const UpdateBooking = () => {
             </div>
           </div>
           <div className="mt-6">
-            <Button btnText="Update" pxLg={true} />
+            <CustomButton btnText="Update" pxLg={true} />
           </div>
         </form>
       </div>

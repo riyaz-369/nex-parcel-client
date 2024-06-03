@@ -8,7 +8,7 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 import Container from "../../components/Shared/Container";
-import Button from "../../components/Shared/Button";
+import CustomButton from "../../components/Shared/CustomButton";
 import { FcGoogle } from "react-icons/fc";
 
 const LogIn = () => {
@@ -157,7 +157,7 @@ const LogIn = () => {
                   )}
                 </div>
                 <div className="mt-6">
-                  <Button btnText="Login" wFull={true} />
+                  <CustomButton btnText="Login" wFull={true} />
                 </div>
               </form>
             </div>

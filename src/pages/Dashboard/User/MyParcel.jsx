@@ -15,7 +15,7 @@ const MyParcel = () => {
     isLoading,
     refetch,
   } = useQuery({
-    queryKey: ["bookings"],
+    queryKey: ["bookings", user?.email],
     queryFn: async () => {
       const { data } = await axiosSecure(`/bookings/${user?.email}`);
       return data;

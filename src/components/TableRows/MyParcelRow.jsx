@@ -52,11 +52,17 @@ const MyParcelRow = ({ bookingParcel, idx, refetch }) => {
       <td className="flex gap-3">
         <Link
           to={`/dashboard/update-booking/${_id}`}
+          title="Update Booking"
           className="text-green-400"
         >
           <FaRegEdit size={23} />
         </Link>
-        <button onClick={() => handleCancel(_id)} className="text-red-400">
+        <button
+          onClick={() => handleCancel(_id)}
+          title="Cancel Booking"
+          disabled={status == "pending"}
+          className="text-red-400 disabled:cursor-not-allowed"
+        >
           <RiChatDeleteLine size={24} />
         </button>
       </td>

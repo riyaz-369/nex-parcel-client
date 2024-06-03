@@ -8,7 +8,7 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 import Container from "../../components/Shared/Container";
-import Button from "../../components/Shared/Button";
+import CustomButton from "../../components/Shared/CustomButton";
 import { FcGoogle } from "react-icons/fc";
 import uploadImage from "../../apis/utilitis";
 import useAxiosCommon from "../../hooks/useAxiosCommon";
@@ -220,7 +220,7 @@ const Register = () => {
                   )}
                 </div>
                 <div className="mt-6">
-                  <Button btnText="Register" wFull={true} />
+                  <CustomButton btnText="Register" wFull={true} />
                 </div>
               </form>
             </div>
