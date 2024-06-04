@@ -6,11 +6,13 @@ const CustomButton3 = ({
   btnSm,
   handleMakeDeliveryMen,
   id,
+  role,
 }) => {
   return (
     <button
+      disabled={role === "Delivery Men"}
       onClick={() => handleMakeDeliveryMen(id)}
-      className={`bg-[#4B5563] border-none hover:bg-[#252c36] text-white ${
+      className={`bg-[#4B5563] border-none hover:bg-[#252c36] text-white disabled:cursor-not-allowed disabled:bg-gray-300 ${
         btnSm
           ? "py-[2px] px-[10px] text-base"
           : "py-3 md:py-[10px] text-base md:text-lg"

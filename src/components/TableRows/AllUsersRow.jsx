@@ -19,6 +19,30 @@ const AllUsersRow = ({ user, idx, refetch }) => {
 
   const handleMakeDeliveryMen = async (id) => {
     console.log(id);
+    const makeDeliverymen = async () => {
+      const { data } = await axiosSecure.patch(`/users/${id}`, {
+        role: "Delivery Men",
+      });
+      console.log(data);
+
+      if (data.modifiedCount > 0) {
+        toast.success("Successful to make deliverymen");
+        refetch();
+      }
+    };
+
+    Swal.fire({
+      title: "Are you sure? to Make Deliverymen",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#4ade80",
+      cancelButtonColor: "#F43F5E",
+      confirmButtonText: "Yes",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        makeDeliverymen();
+      }
+    });
   };
 
   return (
@@ -32,6 +56,7 @@ const AllUsersRow = ({ user, idx, refetch }) => {
       <td className="flex gap-3">
         <CustomButton3
           handleMakeDeliveryMen={handleMakeDeliveryMen}
+          role={role}
           id={_id}
           btnText="Make Deliverymen"
           btnSm={true}
