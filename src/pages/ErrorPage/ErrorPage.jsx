@@ -1,7 +1,10 @@
+import Lottie from "lottie-react";
+import notFound from "../../assets/animation/404.json";
+
 const ErrorPage = () => {
   return (
-    <div>
-      <h3 className="text-3xl">Not Found 404</h3>
+    <div className="flex justify-center h-screen">
+      <Lottie className="w-[800px]" animationData={notFound} />
     </div>
   );
 };
