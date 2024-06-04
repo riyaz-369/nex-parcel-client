@@ -35,37 +35,35 @@ const MyDeliveryList = () => {
 
   return (
     <div>
-      <Container>
-        <h4 className="text-3xl">My delivery lists: {deliveryLists?.length}</h4>
-        <Helmet>
-          <title>Dashboard - My Delivery Lists</title>
-        </Helmet>
-        <table className="table">
-          <thead>
-            <tr className="text-sm">
-              <th>SL</th>
-              <th>Booked By</th>
-              <th>Receivers Name</th>
-              <th>Booked User’s Phone</th>
-              <th>Requested Delivery Date</th>
-              <th>Approximate Delivery Date</th>
-              <th>Receiver Phone Number</th>
-              <th>Receivers Address</th>
-              <th>Actions</th>
-            </tr>
-          </thead>
-          <tbody>
-            {deliveryLists.map((delivery, idx) => (
-              <MyDeliveryListsRow
-                key={delivery._id}
-                delivery={delivery}
-                idx={idx}
-                refetch={refetch}
-              />
-            ))}
-          </tbody>
-        </table>
-      </Container>
+      <h4 className="text-3xl">My delivery lists: {deliveryLists?.length}</h4>
+      <Helmet>
+        <title>Dashboard - My Delivery Lists</title>
+      </Helmet>
+      <table className="table">
+        <thead>
+          <tr className="text-sm">
+            <th>SL</th>
+            <th>Booked By</th>
+            <th>Receivers Name</th>
+            <th>Booked User’s Phone</th>
+            <th>Requested Delivery Date</th>
+            <th>Approximate Delivery Date</th>
+            <th>Receiver Phone Number</th>
+            <th>Receivers Address</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          {deliveryLists.map((delivery, idx) => (
+            <MyDeliveryListsRow
+              key={delivery._id}
+              delivery={delivery}
+              idx={idx}
+              refetch={refetch}
+            />
+          ))}
+        </tbody>
+      </table>
     </div>
   );
 };

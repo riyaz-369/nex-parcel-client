@@ -8,7 +8,7 @@ const Dashboard = () => {
         <Sidebar />
       </div>
       <div className="md:flex-1 md:ml-64">
-        <div className="py-8">
+        <div className="p-8">
           <Outlet />
         </div>
       </div>
