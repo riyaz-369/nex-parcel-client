@@ -1,23 +1,23 @@
 import { useState } from "react";
 import useAuth from "../../../hooks/useAuth";
-import { Link } from "react-router-dom";
 import { FiAlignRight } from "react-icons/fi";
 import { RxCross2 } from "react-icons/rx";
 import NavLinkSidebar from "../../Shared/NavLinkSidebar";
-import { BsPostcard, BsBox2 } from "react-icons/bs";
 import { CgLogOut, CgProfile } from "react-icons/cg";
-import { FaListCheck } from "react-icons/fa6";
-import { MdOutlineReviews } from "react-icons/md";
-import { BsInboxes } from "react-icons/bs";
-import { FaUsers } from "react-icons/fa";
-import { FaPeopleCarry } from "react-icons/fa";
-import { BsGraphUpArrow } from "react-icons/bs";
+
 import ThemeInput from "../../Theme/ThemeInput";
-import logo from "../../../assets/icons/logo.png";
+import UserNavLinks from "./NavLinks/UserNavLinks";
+import DeliverymenNavLinks from "./NavLinks/DeliverymenNavLinks";
+import AdminNavLinks from "./NavLinks/AdminNavLinks";
+import HeaderLink from "../../Shared/HeaderLink";
+import useUser from "../../../hooks/useUser";
 
 const Sidebar = () => {
   const [isActive, setActive] = useState(false);
   const { logOut } = useAuth();
+  const { role } = useUser();
+
+  console.log(role);
 
   const handleToggle = () => {
     setActive(!isActive);
@@ -47,66 +47,20 @@ const Sidebar = () => {
         <div>
           <div>
             <div className="w-full md:flex px-4 py-2 shadow-lg">
-              <Link
-                to="/"
-                className="text-xl md:text-3xl font-bold flex items-center gap-2"
-              >
-                <img className="md:block" src={logo} width="42" />
-                {/* <h3 className="text-2xl lg:text-3xl font-semibold">
-                  NexParcel
-                </h3> */}
-                <h1>
-                  Nex<span className="text-[#F43F5E]">Parcel</span>
-                </h1>
-              </Link>
+              <HeaderLink />
             </div>
           </div>
 
           <div className="flex flex-col justify-between flex-1 mt-6">
             <nav>
               {/* USERS */}
-              <NavLinkSidebar
-                address="book-parcel"
-                label="Book a Parcel"
-                icon={BsPostcard}
-              />
-              <NavLinkSidebar
-                address="my-parcel"
-                label="My Parcel"
-                icon={BsBox2}
-              />
+              {role === "User" && <UserNavLinks />}
+
               {/* DELIVERY MAN */}
-              <NavLinkSidebar
-                address="my-delivery-list"
-                label="My Delivery Lists"
-                icon={FaListCheck}
-              />
-              <NavLinkSidebar
-                address="my-reviews"
-                label="My Reviews"
-                icon={MdOutlineReviews}
-              />
+              {role === "Delivery Men" && <DeliverymenNavLinks />}
+
               {/* ADMIN */}
-              <NavLinkSidebar
-                address="statistics"
-                label="Statistics"
-                icon={BsGraphUpArrow}
-              />
-              <NavLinkSidebar
-                address="all-parcel"
-                label="All Parcel"
-                icon={BsInboxes}
-              />
-              <NavLinkSidebar
-                address="all-users"
-                label="All Users"
-                icon={FaUsers}
-              />
-              <NavLinkSidebar
-                address="all-delivery-men"
-                label="All Delivery Men"
-                icon={FaPeopleCarry}
-              />
+              {role === "Admin" && <AdminNavLinks />}
             </nav>
           </div>
         </div>

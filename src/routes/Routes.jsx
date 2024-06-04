@@ -17,6 +17,7 @@ import AllDeliveryMan from "../pages/Dashboard/Admin/AllDeliveryMan";
 import AdminStatistics from "../pages/Dashboard/Admin/AdminStatistics";
 import UpdateBooking from "../pages/Dashboard/User/UpdateBooking";
 import AdminRoute from "./AdminRoute";
+import DeliverymenRoute from "./DeliverymenRoute";
 
 const router = createBrowserRouter([
   {
@@ -51,6 +52,7 @@ const router = createBrowserRouter([
           </PrivateRoute>
         ),
       },
+
       // USER
       {
         path: "book-parcel",
@@ -78,12 +80,15 @@ const router = createBrowserRouter([
         loader: ({ params }) =>
           fetch(`${import.meta.env.VITE_API_URL}/booking/${params.id}`),
       },
+
       // DELIVERY MAN
       {
         path: "my-delivery-list",
         element: (
           <PrivateRoute>
-            <MyDeliveryList />
+            <DeliverymenRoute>
+              <MyDeliveryList />
+            </DeliverymenRoute>
           </PrivateRoute>
         ),
       },
@@ -91,10 +96,13 @@ const router = createBrowserRouter([
         path: "my-reviews",
         element: (
           <PrivateRoute>
-            <MyReviews />
+            <DeliverymenRoute>
+              <MyReviews />
+            </DeliverymenRoute>
           </PrivateRoute>
         ),
       },
+
       // ADMIN
       {
         path: "statistics",

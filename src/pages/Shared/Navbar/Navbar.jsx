@@ -5,6 +5,7 @@ import NavLinks from "../../../components/Shared/NavLinks";
 import { Link } from "react-router-dom";
 import ThemeInput from "../../../components/Theme/ThemeInput";
 import ProfileDropdown from "../../../components/Dropdown/ProfileDropdown";
+import HeaderLink from "../../../components/Shared/HeaderLink";
 
 const Navbar = () => {
   const { user, logOut } = useAuth();
@@ -53,15 +54,7 @@ const Navbar = () => {
                 {navLinks}
               </ul>
             </div>
-            <Link
-              title="NexParcel - Home"
-              className="text-xl md:text-3xl font-bold flex items-center gap-2"
-            >
-              <img className="w-8 md:w-11" src="/logo.png" />
-              <h1>
-                Nex<span className="text-[#F43F5E]">Parcel</span>
-              </h1>
-            </Link>
+            <HeaderLink />
           </div>
           <div className="navbar-end flex gap-12">
             <div className="hidden lg:flex">
