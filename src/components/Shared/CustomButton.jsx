@@ -4,12 +4,15 @@ const CustomButton = ({
   pxLg,
   icon: Icon,
   btnSm,
-  setIsOpen,
+  handleMakeAdmin,
+  role,
+  id,
 }) => {
   return (
     <button
-      onClick={() => setIsOpen(true)}
-      className={`bg-[#F43F5E] border-none hover:bg-[#E3344D] text-white ${
+      disabled={role === "Delivery Men" || "Admin"}
+      onClick={() => handleMakeAdmin(id)}
+      className={`bg-[#F43F5E] border-none hover:bg-[#E3344D] text-white disabled:cursor-not-allowed disabled:bg-opacity-40 ${
         btnSm
           ? "py-[2px] px-[10px] text-base"
           : "py-3 md:py-[10px] text-base md:text-lg"

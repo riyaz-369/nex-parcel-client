@@ -6,7 +6,6 @@ import CustomButton3 from "../Shared/CustomButton3";
 
 const AllUsersRow = ({ user, idx, refetch }) => {
   const axiosSecure = useAxiosSecure();
-  console.log(user);
 
   const {
     _id,
@@ -17,6 +16,7 @@ const AllUsersRow = ({ user, idx, refetch }) => {
     spent_amount,
   } = user;
 
+  // MAKE DELIVERY MEN
   const handleMakeDeliveryMen = async (id) => {
     console.log(id);
     const makeDeliverymen = async () => {
@@ -32,7 +32,7 @@ const AllUsersRow = ({ user, idx, refetch }) => {
     };
 
     Swal.fire({
-      title: "Are you sure? to Make Deliverymen",
+      title: "Are you sure? to make deliverymen",
       icon: "warning",
       showCancelButton: true,
       confirmButtonColor: "#4ade80",
@@ -41,6 +41,35 @@ const AllUsersRow = ({ user, idx, refetch }) => {
     }).then((result) => {
       if (result.isConfirmed) {
         makeDeliverymen();
+      }
+    });
+  };
+
+  // MAKE ADMIN
+  const handleMakeAdmin = async (id) => {
+    console.log(id);
+    const makeAdmin = async () => {
+      const { data } = await axiosSecure.patch(`/users/${id}`, {
+        role: "Admin",
+      });
+      console.log(data);
+
+      if (data.modifiedCount > 0) {
+        toast.success("Successful to make admin");
+        refetch();
+      }
+    };
+
+    Swal.fire({
+      title: "Are you sure? to make admin",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#4ade80",
+      cancelButtonColor: "#F43F5E",
+      confirmButtonText: "Yes",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        makeAdmin();
       }
     });
   };
@@ -61,7 +90,13 @@ const AllUsersRow = ({ user, idx, refetch }) => {
           btnText="Make Deliverymen"
           btnSm={true}
         />
-        <CustomButton btnText="Make Admin" btnSm={true} />
+        <CustomButton
+          handleMakeAdmin={handleMakeAdmin}
+          id={_id}
+          role={role}
+          btnText="Make Admin"
+          btnSm={true}
+        />
       </td>
     </tr>
   );
