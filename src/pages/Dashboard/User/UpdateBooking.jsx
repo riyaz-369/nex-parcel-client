@@ -41,7 +41,7 @@ const UpdateBooking = () => {
   const [parcelPrice, setParcelPrice] = useState(price);
 
   const handleUpdate = async (formData) => {
-    const { data } = await axiosSecure.patch(`/bookings/${_id}`, {
+    const { data } = await axiosSecure.put(`/bookings/${_id}`, {
       ...formData,
       requested_delivery_date: startDate,
     });

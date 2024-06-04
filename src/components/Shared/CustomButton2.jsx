@@ -5,10 +5,14 @@ const CustomButton2 = ({
   icon: Icon,
   btnSm,
   setIsOpen,
+  handleAssign,
 }) => {
   return (
     <button
-      onClick={() => setIsOpen(false)}
+      onClick={() => {
+        setIsOpen(false);
+        handleAssign();
+      }}
       className={`bg-[#F43F5E] border-none hover:bg-[#E3344D] text-white ${
         btnSm
           ? "py-[2px] px-[10px] text-base"

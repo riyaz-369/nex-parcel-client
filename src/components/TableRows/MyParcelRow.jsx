@@ -14,6 +14,7 @@ const MyParcelRow = ({ bookingParcel, idx, refetch }) => {
     requested_delivery_date,
     approximate_delivery_date,
     booking_date,
+    deliverymen_id,
     status,
   } = bookingParcel;
 
@@ -40,15 +41,25 @@ const MyParcelRow = ({ bookingParcel, idx, refetch }) => {
     });
   };
 
+  const statusStyle = `rounded-full bg-opacity-20 px-2 py-[3px] ${
+    status === "pending" && "bg-[#ffc107]"
+  } ${status === "on the way" && "bg-[#28a745] px-2 text-[15px]"} ${
+    status === "delivered" && "bg-[#43a047]"
+  } ${status === "returned" && "bg-[#d93025]"} ${
+    status === "cancelled" && "bg-[#999999]"
+  } capitalize`;
+
   return (
     <tr className="text-base" key={_id}>
       <th>{idx + 1}</th>
       <td>{parcel_type}</td>
       <td>{new Date(requested_delivery_date).toDateString()}</td>
-      <td>{approximate_delivery_date}</td>
+      <td>{new Date(approximate_delivery_date).toDateString()}</td>
       <td>{new Date(booking_date).toDateString()}</td>
-      <td>{"989898098909"}</td>
-      <td>{status}</td>
+      <td>{deliverymen_id}</td>
+      <td>
+        <span className={statusStyle}>{status}</span>
+      </td>
       <td className="flex gap-3">
         <Link
           to={`/dashboard/update-booking/${_id}`}
@@ -60,8 +71,8 @@ const MyParcelRow = ({ bookingParcel, idx, refetch }) => {
         <button
           onClick={() => handleCancel(_id)}
           title="Cancel Booking"
-          disabled={status == "pending"}
-          className="text-red-400 disabled:cursor-not-allowed"
+          disabled={status !== "pending"}
+          className="text-red-400 disabled:cursor-not-allowed disabled:text-opacity-40"
         >
           <RiChatDeleteLine size={24} />
         </button>

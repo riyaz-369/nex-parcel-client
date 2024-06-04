@@ -10,7 +10,7 @@ const CustomButton3 = ({
 }) => {
   return (
     <button
-      disabled={role === "Delivery Men" || "Admin"}
+      disabled={role === "Delivery Men" || role === "Admin"}
       onClick={() => handleMakeDeliveryMen(id)}
       className={`bg-[#4B5563] border-none hover:bg-[#252c36] text-white disabled:cursor-not-allowed disabled:bg-opacity-40 ${
         btnSm

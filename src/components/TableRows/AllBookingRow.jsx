@@ -1,8 +1,10 @@
 import { MdManageHistory } from "react-icons/md";
-import CustomButton from "../Shared/CustomButton";
+import ManageBookingModal from "../Modals/ManageBookingModal";
+import { useState } from "react";
 
-const AllBookingRow = ({ booking, idx, setIsOpen }) => {
+const AllBookingRow = ({ booking, idx }) => {
   const { _id, name, phone_number, booking_date, price, status } = booking;
+  const [isOpen, setIsOpen] = useState(false);
 
   return (
     <>
@@ -15,14 +17,21 @@ const AllBookingRow = ({ booking, idx, setIsOpen }) => {
         <td>{price}</td>
         <td>{status}</td>
         <td>
-          <CustomButton
-            setIsOpen={setIsOpen}
-            btnText="Manage"
-            icon={MdManageHistory}
-            btnSm={true}
-          />
+          <button
+            onClick={() => setIsOpen(true)}
+            className="btn btn-sm bg-[#F43F5E] hover:bg-[#E3344D] text-white rounded-full shadow-md"
+          >
+            <span>
+              <MdManageHistory />
+            </span>
+            <span>Manage</span>
+          </button>
         </td>
       </tr>
+      {/* MANAGE BOOKING MODAL */}
+      <div>
+        <ManageBookingModal isOpen={isOpen} setIsOpen={setIsOpen} _id={_id} />
+      </div>
     </>
   );
 };

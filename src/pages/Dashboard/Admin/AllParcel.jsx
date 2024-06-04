@@ -4,11 +4,8 @@ import LoadingSpinner from "../../../components/Shared/LoadingSpinner";
 import { Helmet } from "react-helmet";
 import Container from "../../../components/Shared/Container";
 import AllBookingRow from "../../../components/TableRows/AllBookingRow";
-import ManageBookingModal from "../../../components/Modals/ManageBookingModal";
-import { useState } from "react";
 
 const AllParcel = () => {
-  const [isOpen, setIsOpen] = useState(false);
   const axiosSecure = useAxiosSecure();
 
   const {
@@ -52,16 +49,10 @@ const AllParcel = () => {
                 booking={booking}
                 idx={idx}
                 refetch={refetch}
-                setIsOpen={setIsOpen}
               />
             ))}
           </tbody>
         </table>
-
-        {/* MANAGE BOOKING MODAL */}
-        <div>
-          <ManageBookingModal isOpen={isOpen} setIsOpen={setIsOpen} />
-        </div>
       </Container>
     </div>
   );

@@ -1,20 +1,11 @@
-import { useQuery } from "@tanstack/react-query";
-import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import LoadingSpinner from "../../../components/Shared/LoadingSpinner";
 import { Helmet } from "react-helmet";
 import Container from "../../../components/Shared/Container";
 import AllDeliverymenRow from "../../../components/TableRows/AllDeliverymenRow";
+import useAllDeliveryMen from "../../../hooks/useAllDeliveryMen";
 
 const AllDeliveryMan = () => {
-  const axiosSecure = useAxiosSecure();
-
-  const { data: totalDeliverymen = [], isLoading } = useQuery({
-    queryKey: ["users"],
-    queryFn: async () => {
-      const { data } = await axiosSecure("/deliverymen");
-      return data;
-    },
-  });
+  const { totalDeliverymen, isLoading } = useAllDeliveryMen();
 
   if (isLoading) return <LoadingSpinner />;
 
