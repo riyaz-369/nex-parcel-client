@@ -11,7 +11,7 @@ const MyParcel = () => {
   const { user } = useAuth();
 
   const {
-    data: myBookings,
+    data: myBookings = [],
     isLoading,
     refetch,
   } = useQuery({
@@ -29,7 +29,7 @@ const MyParcel = () => {
       <Container>
         <h4 className="text-3xl">My parcel: {myBookings?.length}</h4>
         <Helmet>
-          <title>My Need Volunteer Posts</title>
+          <title>Dashboard - My Parcel</title>
         </Helmet>
         <table className="table">
           <thead>
