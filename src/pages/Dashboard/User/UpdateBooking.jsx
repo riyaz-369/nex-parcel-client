@@ -50,7 +50,7 @@ const UpdateBooking = () => {
       toast.success("Your parcel updated successfully");
       navigate("/dashboard/my-parcel");
     } else {
-      toast.error("You hasn't change any information");
+      toast.error("You haven't change any information");
     }
   };
 

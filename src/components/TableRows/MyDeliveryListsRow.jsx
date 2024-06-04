@@ -22,7 +22,7 @@ const MyDeliveryListsRow = ({ delivery, refetch, idx }) => {
       const { data } = await axiosSecure.put(`/bookings/${id}`, {
         status: "cancelled",
       });
-      if (data.deletedCount > 0) {
+      if (data.modifiedCount > 0) {
         toast.success("Delivery canceled");
         refetch();
       }
@@ -92,7 +92,7 @@ const MyDeliveryListsRow = ({ delivery, refetch, idx }) => {
             onClick={() => handleDeliver(_id)}
             className="flex gap-1 bg-[#4B5563] border-none hover:bg-[#252c36] shadow-md text-white btn btn-sm rounded-full"
           >
-            <span>Deliver</span>
+            <span>{status === "delivered" ? "Delivered" : "Deliver"}</span>
           </button>
           {/* CANCEL BUTTON */}
           <button
@@ -100,7 +100,7 @@ const MyDeliveryListsRow = ({ delivery, refetch, idx }) => {
             onClick={() => handleCancel(_id)}
             className="flex gap-1 bg-[#F43F5E] border-none hover:bg-[#E3344D] shadow-md text-white btn btn-sm rounded-full"
           >
-            <span>Cancel</span>
+            <span>{status === "cancelled" ? "Cancelled" : "Cancel"}</span>
           </button>
         </td>
       </tr>

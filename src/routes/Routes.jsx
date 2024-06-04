@@ -16,6 +16,7 @@ import AllUsers from "../pages/Dashboard/Admin/AllUsers";
 import AllDeliveryMan from "../pages/Dashboard/Admin/AllDeliveryMan";
 import AdminStatistics from "../pages/Dashboard/Admin/AdminStatistics";
 import UpdateBooking from "../pages/Dashboard/User/UpdateBooking";
+import AdminRoute from "./AdminRoute";
 
 const router = createBrowserRouter([
   {
@@ -99,7 +100,9 @@ const router = createBrowserRouter([
         path: "statistics",
         element: (
           <PrivateRoute>
-            <AdminStatistics />
+            <AdminRoute>
+              <AdminStatistics />
+            </AdminRoute>
           </PrivateRoute>
         ),
       },
@@ -107,7 +110,9 @@ const router = createBrowserRouter([
         path: "all-parcel",
         element: (
           <PrivateRoute>
-            <AllParcel />
+            <AdminRoute>
+              <AllParcel />
+            </AdminRoute>
           </PrivateRoute>
         ),
       },
@@ -115,7 +120,9 @@ const router = createBrowserRouter([
         path: "all-users",
         element: (
           <PrivateRoute>
-            <AllUsers />
+            <AdminRoute>
+              <AllUsers />
+            </AdminRoute>
           </PrivateRoute>
         ),
       },
@@ -123,7 +130,9 @@ const router = createBrowserRouter([
         path: "all-delivery-men",
         element: (
           <PrivateRoute>
-            <AllDeliveryMan />
+            <AdminRoute>
+              <AllDeliveryMan />
+            </AdminRoute>
           </PrivateRoute>
         ),
       },

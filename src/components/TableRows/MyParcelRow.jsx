@@ -1,9 +1,8 @@
-import { FaRegEdit } from "react-icons/fa";
-import { RiChatDeleteLine } from "react-icons/ri";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import toast from "react-hot-toast";
 import Swal from "sweetalert2";
-import { Link } from "react-router-dom";
+import EditAndDelete from "../Dashboard/Buttons/EditAndDelete";
+import ReviewAndPay from "../Dashboard/Buttons/ReviewAndPay";
 
 const MyParcelRow = ({ bookingParcel, idx, refetch }) => {
   const axiosSecure = useAxiosSecure();
@@ -41,7 +40,7 @@ const MyParcelRow = ({ bookingParcel, idx, refetch }) => {
     });
   };
 
-  const statusStyle = `rounded-full bg-opacity-20 px-2 py-[3px] ${
+  const statusStyle = `rounded-full text-sm font-medium bg-opacity-20 px-2 py-[3px] ${
     status === "pending" && "bg-[#ffc107]"
   } ${status === "on the way" && "bg-[#28a745] px-2 text-[15px]"} ${
     status === "delivered" && "bg-[#43a047]"
@@ -53,30 +52,22 @@ const MyParcelRow = ({ bookingParcel, idx, refetch }) => {
     <tr className="text-base" key={_id}>
       <th>{idx + 1}</th>
       <td>{parcel_type}</td>
-      <td>{new Date(requested_delivery_date).toDateString()}</td>
-      <td>{new Date(approximate_delivery_date).toDateString()}</td>
-      <td>{new Date(booking_date).toDateString()}</td>
+      <td>{new Date(requested_delivery_date).toLocaleDateString()}</td>
+      <td>{new Date(approximate_delivery_date).toLocaleDateString()}</td>
+      <td>{new Date(booking_date).toLocaleDateString()}</td>
       <td>{deliverymen_id}</td>
       <td>
         <span className={statusStyle}>{status}</span>
       </td>
-      <td className="flex gap-3">
-        <Link
-          to={`/dashboard/update-booking/${_id}`}
-          title="Update Booking"
-          className="text-green-400"
-        >
-          <FaRegEdit size={23} />
-        </Link>
-        <button
-          onClick={() => handleCancel(_id)}
-          title="Cancel Booking"
-          disabled={status !== "pending"}
-          className="text-red-400 disabled:cursor-not-allowed disabled:text-opacity-40"
-        >
-          <RiChatDeleteLine size={24} />
-        </button>
-      </td>
+      {status !== "delivered" ? (
+        <td className="flex gap-3">
+          <EditAndDelete handleCancel={handleCancel} _id={_id} />
+        </td>
+      ) : (
+        <td className="flex gap-3">
+          <ReviewAndPay />
+        </td>
+      )}
     </tr>
   );
 };

@@ -1,22 +1,13 @@
 import { useQuery } from "@tanstack/react-query";
-import useAuth from "../../../hooks/useAuth";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
-import Container from "../../../components/Shared/Container";
 import MyDeliveryListsRow from "../../../components/TableRows/MyDeliveryListsRow";
 import { Helmet } from "react-helmet";
 import LoadingSpinner from "../../../components/Shared/LoadingSpinner";
+import useUser from "../../../hooks/useUser";
 
 const MyDeliveryList = () => {
-  const { user } = useAuth();
   const axiosSecure = useAxiosSecure();
-
-  const { data: dbUser } = useQuery({
-    queryKey: ["user", user?.email],
-    queryFn: async () => {
-      const { data } = await axiosSecure(`/user/${user?.email}`);
-      return data;
-    },
-  });
+  const { dbUser, userLoading } = useUser();
 
   const {
     data: deliveryLists = [],
@@ -31,7 +22,7 @@ const MyDeliveryList = () => {
     },
   });
 
-  if (isLoading) return <LoadingSpinner />;
+  if (isLoading || userLoading) return <LoadingSpinner />;
 
   return (
     <div>

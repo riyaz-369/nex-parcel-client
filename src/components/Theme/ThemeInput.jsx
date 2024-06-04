@@ -5,7 +5,7 @@ const ThemeInput = () => {
 
   // THEME CONTROLLER
   const handleTheme = (e) => {
-    const userTheme = e.target.checked ? "dark" : "light";
+    const userTheme = e.target.checked ? "night" : "light";
     setTheme(userTheme);
     localStorage.setItem("theme", userTheme);
   };
@@ -23,7 +23,7 @@ const ThemeInput = () => {
         <input
           onChange={handleTheme}
           type="checkbox"
-          checked={theme === "dark"}
+          checked={theme === "night"}
           className="toggle theme-controller bg-base-content row-start-1 col-start-1 col-span-2"
         />
         <svg
