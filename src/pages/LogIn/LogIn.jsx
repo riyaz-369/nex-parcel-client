@@ -10,6 +10,7 @@ import toast from "react-hot-toast";
 import Container from "../../components/Shared/Container";
 import CustomButton from "../../components/Shared/CustomButton";
 import { FcGoogle } from "react-icons/fc";
+import GoogleLogInBtn from "../../components/Shared/GoogleLogInBtn";
 
 const LogIn = () => {
   const { googleSignIn, signIn, saveUserInDB } = useAuth();
@@ -68,24 +69,14 @@ const LogIn = () => {
               <p className="mb-6 text-center text-2xl lg:text-3xl font-semibold">
                 Login Your Account
               </p>
-              <a
-                onClick={handleGoogleSignIn}
-                className="flex items-center justify-center mt-4  border border-opacity-30 border-[#F43F5E] hover:border-[#F43F5E] rounded-lg btn-outline btn hover:bg-gray-50 hover:text-black"
-              >
-                <div className="text-3xl">
-                  <FcGoogle />
-                </div>
-                <span className="w-5/6 px-4 py-3 font-bold text-center">
-                  Login in with Google
-                </span>
-              </a>
+              <GoogleLogInBtn handleGoogleSignIn={handleGoogleSignIn} />
               <div className="flex items-center justify-between mt-4">
                 <span className="w-1/5 border-b border-gray-600 md:w-1/4"></span>
                 <span className="text-base text-gray-500">
                   Don't have an account?{" "}
                   <Link
                     to="/register"
-                    className="hover:text-[#F43F5E] transition-colors underline font-bold text-[#111827] text-lg"
+                    className="hover:text-[#db2d4a] transition-colors underline font-bold text-[#F43F5E] text-lg"
                   >
                     Register
                   </Link>

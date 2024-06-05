@@ -1,8 +1,6 @@
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import toast from "react-hot-toast";
 import Swal from "sweetalert2";
-import CustomButton from "../../components/Shared/CustomButton";
-import CustomButton3 from "../Shared/CustomButton3";
 
 const AllUsersRow = ({ user, idx, refetch }) => {
   const axiosSecure = useAxiosSecure();
@@ -83,23 +81,26 @@ const AllUsersRow = ({ user, idx, refetch }) => {
       <td>{number_of_parcel_booked}</td>
       <td>{spent_amount}</td>
       <td className="flex gap-3">
-        <CustomButton3
-          handleMakeDeliveryMen={handleMakeDeliveryMen}
-          role={role}
-          id={_id}
-          btnText="Make Deliverymen"
-          btnSm={true}
-        />
-        <CustomButton
-          handleMakeAdmin={handleMakeAdmin}
-          id={_id}
-          role={role}
-          btnText="Make Admin"
-          btnSm={true}
-        />
+        <button
+          onClick={() => handleMakeDeliveryMen(_id)}
+          disabled={role === "Delivery Men" || role === "Admin"}
+          className="small-secondary-btn disabled:cursor-not-allowed"
+        >
+          Make Deliverymen
+        </button>
+        <button
+          onClick={() => handleMakeAdmin(_id)}
+          disabled={role === "Delivery Men" || role === "Admin"}
+          className="small-primary-btn disabled:cursor-not-allowed"
+        >
+          Make Admin
+        </button>
       </td>
     </tr>
   );
 };
 
 export default AllUsersRow;
+
+// disabled={role === "Delivery Men" || role === "Admin"}
+//       onClick={() => handleMakeAdmin(id)}
