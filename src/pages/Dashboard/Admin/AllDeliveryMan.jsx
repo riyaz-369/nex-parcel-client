@@ -5,16 +5,14 @@ import AllDeliverymenRow from "../../../components/TableRows/AllDeliverymenRow";
 import useAllDeliveryMen from "../../../hooks/useAllDeliveryMen";
 
 const AllDeliveryMan = () => {
-  const { totalDeliverymen, isLoading } = useAllDeliveryMen();
+  const { allDeliverymen, isLoading } = useAllDeliveryMen();
 
   if (isLoading) return <LoadingSpinner />;
 
   return (
     <div>
       <Container>
-        <h4 className="text-3xl">
-          All Deliverymen: {totalDeliverymen?.length}
-        </h4>
+        <h4 className="text-3xl">All Deliverymen: {allDeliverymen?.length}</h4>
         <Helmet>
           <title>Dashboard - All Deliverymen</title>
         </Helmet>
@@ -29,7 +27,7 @@ const AllDeliveryMan = () => {
             </tr>
           </thead>
           <tbody>
-            {totalDeliverymen.map((deliverymen, idx) => (
+            {allDeliverymen.map((deliverymen, idx) => (
               <AllDeliverymenRow
                 key={deliverymen._id}
                 deliverymen={deliverymen}

@@ -12,6 +12,7 @@ import {
 import { createContext, useEffect, useState } from "react";
 import app from "../firebase/firebase.config";
 import useAxiosCommon from "../hooks/useAxiosCommon";
+import toast from "react-hot-toast";
 
 const auth = getAuth(app);
 const googleProvider = new GoogleAuthProvider();
@@ -52,19 +53,22 @@ const AuthProvider = ({ children }) => {
   };
 
   const saveUserInDB = (userDetail) => {
-    console.log(userDetail);
     const userInfo = {
       name: userDetail?.displayName,
       email: userDetail?.email,
       photoURL: userDetail?.photoURL,
       role: "User",
     };
-    console.log(userInfo);
+
     const getData = async () => {
-      const { data } = await axiosCommon.post("/users", userInfo);
-      console.log(data);
+      try {
+        const { data } = await axiosCommon.post("/users", userInfo);
+        console.log(data);
+      } catch (err) {
+        toast.error(err.message);
+      }
     };
-    if (userDetail) {
+    if (userInfo) {
       getData();
     }
   };

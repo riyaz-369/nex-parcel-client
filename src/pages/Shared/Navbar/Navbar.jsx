@@ -6,13 +6,12 @@ import { Link } from "react-router-dom";
 import ThemeInput from "../../../components/Theme/ThemeInput";
 import ProfileDropdown from "../../../components/Dropdown/ProfileDropdown";
 import HeaderLink from "../../../components/Shared/HeaderLink";
+import useLogOut from "../../../hooks/useLogOut";
 
 const Navbar = () => {
-  const { user, logOut } = useAuth();
+  const { user } = useAuth();
 
-  const handleLogOut = async () => {
-    await logOut();
-  };
+  const handleLogOut = useLogOut();
 
   const navLinks = (
     <>

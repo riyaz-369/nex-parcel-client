@@ -15,11 +15,19 @@ import { useForm } from "react-hook-form";
 import { RxCross2 } from "react-icons/rx";
 import toast from "react-hot-toast";
 
-const ManageBookingModal = ({ isOpen, setIsOpen, _id }) => {
-  const [startDate, setStartDate] = useState(new Date());
+const ManageBookingModal = ({
+  isOpen,
+  setIsOpen,
+  refetch,
+  _id,
+  requested_delivery_date,
+}) => {
+  const [startDate, setStartDate] = useState(
+    new Date(requested_delivery_date) || new Date()
+  );
   const axiosSecure = useAxiosSecure();
   const { register, handleSubmit, reset } = useForm();
-  const { totalDeliverymen } = useAllDeliveryMen();
+  const { allDeliverymen } = useAllDeliveryMen();
 
   const handleAssign = async (formData) => {
     const manageBookingData = {
@@ -28,17 +36,20 @@ const ManageBookingModal = ({ isOpen, setIsOpen, _id }) => {
       approximate_delivery_date: startDate,
     };
 
-    const { data } = await axiosSecure.put(
-      `/bookings/${_id}`,
-      manageBookingData
-    );
-    console.log(data);
-
-    if (data.modifiedCount > 0) {
-      toast.success("Successfully assigned deliverymen");
-      reset();
-    } else {
-      toast.error("haven't any changes");
+    try {
+      const { data } = await axiosSecure.put(
+        `/bookings/${_id}`,
+        manageBookingData
+      );
+      if (data.modifiedCount > 0) {
+        toast.success("Successfully assigned deliverymen");
+        refetch();
+        reset();
+      } else {
+        toast.error("haven't any changes");
+      }
+    } catch (err) {
+      toast.error(err.message);
     }
   };
 
@@ -86,15 +97,7 @@ const ManageBookingModal = ({ isOpen, setIsOpen, _id }) => {
                             className={inputStyle}
                             {...register("deliverymen_id", { required: true })}
                           >
-                            <option
-                              value="Select Deliverymen"
-                              className="font-semibold"
-                              selected
-                              disabled
-                            >
-                              Select Deliverymen ID
-                            </option>
-                            {totalDeliverymen.map((deliverymen) => (
+                            {allDeliverymen.map((deliverymen) => (
                               <option
                                 key={deliverymen._id}
                                 value={deliverymen._id}

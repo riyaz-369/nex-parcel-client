@@ -8,9 +8,8 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 import Container from "../../components/Shared/Container";
-import CustomButton from "../../components/Shared/CustomButton";
-import { FcGoogle } from "react-icons/fc";
 import GoogleLogInBtn from "../../components/Shared/GoogleLogInBtn";
+import CustomButton3 from "../../components/Shared/CustomButton3";
 
 const LogIn = () => {
   const { googleSignIn, signIn, saveUserInDB } = useAuth();
@@ -26,7 +25,7 @@ const LogIn = () => {
     formState: { errors },
   } = useForm();
 
-  const handleRegister = async (formData) => {
+  const handleLogin = async (formData) => {
     const { email, password } = formData;
 
     try {
@@ -35,7 +34,11 @@ const LogIn = () => {
       toast.success("Login successful.");
       navigate(from, { replace: true });
     } catch (err) {
-      toast.error(err.message);
+      if (err.code) {
+        toast.error("Invalid email or password");
+      } else {
+        toast.error(err.message);
+      }
     }
   };
 
@@ -50,9 +53,6 @@ const LogIn = () => {
       toast.error(err.message);
     }
   };
-
-  const inputStyle =
-    "block w-full px-4 py-3 border border-opacity-30 border-[#F43F5E] rounded-lg focus:border-[#F43F5E] focus:ring-opacity-40 focus:outline-none focus:ring focus:ring-[#F43F5E]";
 
   return (
     <div className="bg-base-200 py-8">
@@ -84,13 +84,13 @@ const LogIn = () => {
                 <span className="w-1/5 border-b border-gray-600 md:w-1/4"></span>
               </div>
               {/* LOGIN FORM */}
-              <form onSubmit={handleSubmit(handleRegister)}>
+              <form onSubmit={handleSubmit(handleLogin)}>
                 <div className="mt-4">
                   <label className="block mb-2 text-sm font-medium text-gray-600">
                     Email
                   </label>
                   <input
-                    className={`${inputStyle}`}
+                    className="input-style"
                     type="email"
                     placeholder="Enter Your Email Address"
                     {...register("email", { required: true })}
@@ -119,7 +119,7 @@ const LogIn = () => {
                     <input
                       type={showPassword ? "text" : "password"}
                       placeholder="Enter Your Password"
-                      className={`${inputStyle}`}
+                      className="input-style"
                       {...register("password", {
                         required: true,
                         minLength: 6,
@@ -148,7 +148,7 @@ const LogIn = () => {
                   )}
                 </div>
                 <div className="mt-6">
-                  <CustomButton btnText="Login" wFull={true} />
+                  <CustomButton3 btnText="Login" wFull={true} />
                 </div>
               </form>
             </div>

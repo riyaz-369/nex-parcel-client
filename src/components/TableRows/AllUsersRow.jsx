@@ -8,6 +8,7 @@ const AllUsersRow = ({ user, idx, refetch }) => {
   const {
     _id,
     name,
+    email,
     role,
     phone_number,
     number_of_parcel_booked,
@@ -15,17 +16,21 @@ const AllUsersRow = ({ user, idx, refetch }) => {
   } = user;
 
   // MAKE DELIVERY MEN
-  const handleMakeDeliveryMen = async (id) => {
-    console.log(id);
+  const handleMakeDeliveryMen = async (email) => {
+    console.log(email);
     const makeDeliverymen = async () => {
-      const { data } = await axiosSecure.patch(`/users/${id}`, {
-        role: "Delivery Men",
-      });
-      console.log(data);
+      try {
+        const { data } = await axiosSecure.patch(`/users/${email}`, {
+          role: "Delivery Men",
+        });
+        console.log(data);
 
-      if (data.modifiedCount > 0) {
-        toast.success("Successful to make deliverymen");
-        refetch();
+        if (data.modifiedCount > 0) {
+          toast.success("Successful to make deliverymen");
+          refetch();
+        }
+      } catch (err) {
+        toast.error(err.message);
       }
     };
 
@@ -44,17 +49,21 @@ const AllUsersRow = ({ user, idx, refetch }) => {
   };
 
   // MAKE ADMIN
-  const handleMakeAdmin = async (id) => {
-    console.log(id);
+  const handleMakeAdmin = async (email) => {
+    console.log(email);
     const makeAdmin = async () => {
-      const { data } = await axiosSecure.patch(`/users/${id}`, {
-        role: "Admin",
-      });
-      console.log(data);
+      try {
+        const { data } = await axiosSecure.patch(`/users/${email}`, {
+          role: "Admin",
+        });
+        console.log(data);
 
-      if (data.modifiedCount > 0) {
-        toast.success("Successful to make admin");
-        refetch();
+        if (data.modifiedCount > 0) {
+          toast.success("Successful to make admin");
+          refetch();
+        }
+      } catch (err) {
+        toast.error(err.message);
       }
     };
 
@@ -82,14 +91,14 @@ const AllUsersRow = ({ user, idx, refetch }) => {
       <td>{spent_amount}</td>
       <td className="flex gap-3">
         <button
-          onClick={() => handleMakeDeliveryMen(_id)}
+          onClick={() => handleMakeDeliveryMen(email)}
           disabled={role === "Delivery Men" || role === "Admin"}
           className="small-secondary-btn disabled:cursor-not-allowed"
         >
           Make Deliverymen
         </button>
         <button
-          onClick={() => handleMakeAdmin(_id)}
+          onClick={() => handleMakeAdmin(email)}
           disabled={role === "Delivery Men" || role === "Admin"}
           className="small-primary-btn disabled:cursor-not-allowed"
         >
@@ -101,6 +110,3 @@ const AllUsersRow = ({ user, idx, refetch }) => {
 };
 
 export default AllUsersRow;
-
-// disabled={role === "Delivery Men" || role === "Admin"}
-//       onClick={() => handleMakeAdmin(id)}

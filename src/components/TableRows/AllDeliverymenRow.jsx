@@ -1,5 +1,5 @@
 const AllDeliverymenRow = ({ deliverymen, idx }) => {
-  const { name, phone_number, number_of_parcel_delivered, average_review } =
+  const { name, phone_number, no_of_delivered_parcel, average_review } =
     deliverymen;
 
   return (
@@ -7,7 +7,7 @@ const AllDeliverymenRow = ({ deliverymen, idx }) => {
       <th>{idx + 1}</th>
       <td>{name}</td>
       <td>{phone_number}</td>
-      <td>{number_of_parcel_delivered}</td>
+      <td>{no_of_delivered_parcel}</td>
       <td>{average_review}</td>
     </tr>
   );

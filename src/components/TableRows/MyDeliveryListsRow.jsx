@@ -2,9 +2,12 @@ import { FaMapLocationDot } from "react-icons/fa6";
 import Swal from "sweetalert2";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import toast from "react-hot-toast";
+import useAuth from "../../hooks/useAuth";
 
 const MyDeliveryListsRow = ({ delivery, refetch, idx }) => {
   const axiosSecure = useAxiosSecure();
+  const { user } = useAuth();
+
   const {
     _id,
     name,
@@ -17,14 +20,45 @@ const MyDeliveryListsRow = ({ delivery, refetch, idx }) => {
     status,
   } = delivery;
 
-  const handleCancel = async (id) => {
-    const doCancel = async () => {
+  const handleDeliveredCount = async () => {
+    try {
+      const { data } = await axiosSecure.put(`/user/${user?.email}`);
+      console.log(data);
+    } catch (err) {
+      console.log(err.message);
+      toast.error(err.message);
+    }
+  };
+
+  const handleDeliver = async (id) => {
+    try {
       const { data } = await axiosSecure.put(`/bookings/${id}`, {
-        status: "cancelled",
+        status: "delivered",
       });
       if (data.modifiedCount > 0) {
-        toast.success("Delivery canceled");
+        toast.success("Congratulations ! You'r delivered this parcel");
         refetch();
+        handleDeliveredCount();
+      }
+    } catch (err) {
+      console.log(err.message);
+      toast.error(err.message);
+    }
+  };
+
+  const handleCancel = async (id) => {
+    const doCancel = async () => {
+      try {
+        const { data } = await axiosSecure.put(`/bookings/${id}`, {
+          status: "cancelled",
+        });
+        if (data.modifiedCount > 0) {
+          toast.success("Delivery canceled");
+          refetch();
+        }
+      } catch (err) {
+        console.log(err.message);
+        toast.error(err.message);
       }
     };
     Swal.fire({
@@ -37,30 +71,6 @@ const MyDeliveryListsRow = ({ delivery, refetch, idx }) => {
     }).then((result) => {
       if (result.isConfirmed) {
         doCancel();
-      }
-    });
-  };
-
-  const handleDeliver = async (id) => {
-    const doDeliver = async () => {
-      const { data } = await axiosSecure.put(`/bookings/${id}`, {
-        status: "delivered",
-      });
-      if (data.modifiedCount > 0) {
-        toast.success("Congratulations ! You'r delivered this parcel");
-        refetch();
-      }
-    };
-    Swal.fire({
-      title: "Are you sure?",
-      icon: "warning",
-      showCancelButton: true,
-      confirmButtonColor: "#4ade80",
-      cancelButtonColor: "#F43F5E",
-      confirmButtonText: "Yes",
-    }).then((result) => {
-      if (result.isConfirmed) {
-        doDeliver();
       }
     });
   };

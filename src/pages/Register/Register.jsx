@@ -9,7 +9,6 @@ import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 import Container from "../../components/Shared/Container";
 import CustomButton from "../../components/Shared/CustomButton";
-import { FcGoogle } from "react-icons/fc";
 import uploadImage from "../../apis/utilitis";
 import useAxiosCommon from "../../hooks/useAxiosCommon";
 import GoogleLogInBtn from "../../components/Shared/GoogleLogInBtn";
@@ -33,7 +32,6 @@ const Register = () => {
 
     try {
       await createUser(email, password);
-      reset();
       const hostImage = await uploadImage(image);
       const userInfo = {
         name,
@@ -43,7 +41,9 @@ const Register = () => {
       };
 
       const { data } = await axiosCommon.post("/users", userInfo);
+      console.log(data);
       if (data.insertedId) {
+        reset();
         toast.success("Registration successful.");
         navigate("/");
       }
@@ -52,9 +52,7 @@ const Register = () => {
       await updatedProfile(name, hostImage);
     } catch (err) {
       toast.error(err.message);
-      if (err.code) {
-        toast.error("Email already in use.");
-      }
+      console.log(err);
     }
   };
 
@@ -69,9 +67,6 @@ const Register = () => {
       toast.error(err.message);
     }
   };
-
-  const inputStyle =
-    "block w-full px-4 py-3 border border-opacity-30 border-[#F43F5E] rounded-lg focus:border-[#F43F5E] focus:ring-opacity-40 focus:outline-none focus:ring focus:ring-[#F43F5E]";
 
   return (
     <div className="bg-base-200 py-8">
@@ -109,7 +104,7 @@ const Register = () => {
                     Full Name
                   </label>
                   <input
-                    className={`${inputStyle}`}
+                    className="input-style"
                     type="text"
                     placeholder="Enter Your Name"
                     {...register("name", { required: true })}
@@ -123,7 +118,7 @@ const Register = () => {
                     Email
                   </label>
                   <input
-                    className={`${inputStyle}`}
+                    className="input-style"
                     type="email"
                     placeholder="Enter Your Email Address"
                     {...register("email", { required: true })}
@@ -151,7 +146,7 @@ const Register = () => {
                       Role
                     </label>
                     <select
-                      className={`${inputStyle} py-3`}
+                      className="input-style py-3"
                       {...register("role", { required: true })}
                     >
                       <option selected value="User">
@@ -182,7 +177,7 @@ const Register = () => {
                     <input
                       type={showPassword ? "text" : "password"}
                       placeholder="Enter Your Password"
-                      className={`${inputStyle}`}
+                      className="input-style"
                       {...register("password", {
                         required: true,
                         minLength: 6,

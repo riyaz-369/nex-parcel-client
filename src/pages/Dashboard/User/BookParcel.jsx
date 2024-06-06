@@ -22,16 +22,20 @@ const BookParcel = () => {
   const navigate = useNavigate();
 
   const handleBook = async (formData) => {
-    const { data } = await axiosSecure.post("/bookings", {
-      ...formData,
-      status: "pending",
-      requested_delivery_date: startDate,
-      booking_date: new Date(),
-    });
+    try {
+      const { data } = await axiosSecure.post("/bookings", {
+        ...formData,
+        status: "pending",
+        requested_delivery_date: startDate,
+        booking_date: new Date(),
+      });
 
-    if (data.insertedId) {
-      toast.success("Booked your parcel successfully");
-      navigate("/dashboard/my-parcel");
+      if (data.insertedId) {
+        toast.success("Booked your parcel successfully");
+        navigate("/dashboard/my-parcel");
+      }
+    } catch (err) {
+      toast.error(err.message);
     }
   };
 
@@ -54,9 +58,6 @@ const BookParcel = () => {
     setValue("price", calcPrice);
   }, [parcelWeight, setValue]);
 
-  const inputStyle =
-    "block w-full px-4 py-3 border border-opacity-30 border-[#F43F5E] rounded-lg focus:border-[#F43F5E] focus:ring-opacity-40 focus:outline-none focus:ring focus:ring-[#F43F5E]";
-
   return (
     <Container>
       <div>
@@ -71,7 +72,7 @@ const BookParcel = () => {
                 Name
               </label>
               <input
-                className={inputStyle}
+                className="input-style"
                 type="text"
                 defaultValue={user?.displayName}
                 readOnly
@@ -84,7 +85,7 @@ const BookParcel = () => {
                 Email
               </label>
               <input
-                className={inputStyle}
+                className="input-style"
                 type="text"
                 defaultValue={user?.email}
                 readOnly
@@ -103,7 +104,7 @@ const BookParcel = () => {
                 render={({ field }) => (
                   <PhoneInput
                     {...field}
-                    className={`${inputStyle} focus:border-none`}
+                    className={`$"input-style" focus:border-none`}
                     placeholder="Enter Your Phone Number"
                     defaultCountry="BD"
                   />
@@ -116,7 +117,7 @@ const BookParcel = () => {
                 Parcel Type
               </label>
               <input
-                className={inputStyle}
+                className="input-style"
                 type="text"
                 placeholder="Enter Your Parcel Type"
                 {...register("parcel_type", { required: true })}
@@ -128,7 +129,7 @@ const BookParcel = () => {
                 Parcel Weight
               </label>
               <input
-                className={inputStyle}
+                className="input-style"
                 type="number"
                 placeholder="Enter Your Parcel Weight: kg"
                 {...register("parcel_weight", { required: true })}
@@ -140,7 +141,7 @@ const BookParcel = () => {
                 Price
               </label>
               <input
-                className={inputStyle}
+                className="input-style"
                 type="number"
                 value={price}
                 readOnly
@@ -153,7 +154,7 @@ const BookParcel = () => {
                 Receiver Name
               </label>
               <input
-                className={inputStyle}
+                className="input-style"
                 type="text"
                 placeholder="Enter the Receiver Name"
                 {...register("receiver_name", { required: true })}
@@ -171,7 +172,7 @@ const BookParcel = () => {
                 render={({ field }) => (
                   <PhoneInput
                     {...field}
-                    className={inputStyle}
+                    className="input-style"
                     placeholder="Enter Receiver Phone Number"
                     defaultCountry="BD"
                   />
@@ -185,7 +186,7 @@ const BookParcel = () => {
               </label>
               {/* date picker input */}
               <ReactDatePicker
-                className={inputStyle}
+                className="input-style"
                 selected={startDate}
                 onChange={(date) => setStartDate(date)}
               />
@@ -196,7 +197,7 @@ const BookParcel = () => {
                 Delivery Address
               </label>
               <input
-                className={inputStyle}
+                className="input-style"
                 type="text"
                 placeholder="Enter the Parcel Delivery Address"
                 {...register("delivery_address", { required: true })}
@@ -208,7 +209,7 @@ const BookParcel = () => {
                 Delivery Address Latitude
               </label>
               <input
-                className={inputStyle}
+                className="input-style"
                 type="text"
                 placeholder="ex 23.8041"
                 {...register("delivery_address_latitude")}
@@ -220,7 +221,7 @@ const BookParcel = () => {
                 Delivery Address Longitude
               </label>
               <input
-                className={inputStyle}
+                className="input-style"
                 type="text"
                 placeholder="ex 90.4152"
                 {...register("delivery_address_longitude")}

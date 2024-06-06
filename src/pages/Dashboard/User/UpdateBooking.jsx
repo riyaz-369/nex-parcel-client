@@ -33,6 +33,7 @@ const UpdateBooking = () => {
     delivery_address,
     delivery_address_latitude,
     delivery_address_longitude,
+    status,
   } = bookingData || {};
 
   const [startDate, setStartDate] = useState(
@@ -41,16 +42,22 @@ const UpdateBooking = () => {
   const [parcelPrice, setParcelPrice] = useState(price);
 
   const handleUpdate = async (formData) => {
-    const { data } = await axiosSecure.put(`/bookings/${_id}`, {
-      ...formData,
-      requested_delivery_date: startDate,
-    });
+    try {
+      const { data } = await axiosSecure.put(`/bookings/${_id}`, {
+        ...formData,
+        requested_delivery_date: startDate,
+      });
 
-    if (data.modifiedCount > 0) {
-      toast.success("Your parcel updated successfully");
-      navigate("/dashboard/my-parcel");
-    } else {
-      toast.error("You haven't change any information");
+      if (status !== "pending") {
+        toast.error("You can't update right now");
+      } else if (data.modifiedCount > 0) {
+        toast.success("Your parcel updated successfully");
+        navigate("/dashboard/my-parcel");
+      } else {
+        toast.error("You haven't change any information");
+      }
+    } catch (err) {
+      toast.error(err.message);
     }
   };
 

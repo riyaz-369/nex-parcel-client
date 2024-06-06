@@ -15,14 +15,18 @@ const MyParcelRow = ({ bookingParcel, idx, refetch }) => {
     booking_date,
     deliverymen_id,
     status,
-  } = bookingParcel;
+  } = bookingParcel || {};
 
   const handleCancel = async (id) => {
     const doCancel = async () => {
-      const { data } = await axiosSecure.delete(`/bookings/${id}`);
-      if (data.deletedCount > 0) {
-        toast.success("Canceled your booking");
-        refetch();
+      try {
+        const { data } = await axiosSecure.delete(`/bookings/${id}`);
+        if (data.deletedCount > 0) {
+          toast.success("Canceled your booking");
+          refetch();
+        }
+      } catch (err) {
+        toast.error(err.message);
       }
     };
 
@@ -43,9 +47,9 @@ const MyParcelRow = ({ bookingParcel, idx, refetch }) => {
   const statusStyle = `rounded-full text-sm font-medium bg-opacity-20 px-2 py-[3px] ${
     status === "pending" && "bg-[#ffc107]"
   } ${status === "on the way" && "bg-[#28a745] px-2 text-[15px]"} ${
-    status === "delivered" && "bg-[#43a047]"
+    status === "delivered" && "bg-blue-300 bg-opacity-100"
   } ${status === "returned" && "bg-[#d93025]"} ${
-    status === "cancelled" && "bg-[#999999]"
+    status === "cancelled" && "bg-red-400"
   } capitalize`;
 
   return (
@@ -53,7 +57,10 @@ const MyParcelRow = ({ bookingParcel, idx, refetch }) => {
       <th>{idx + 1}</th>
       <td>{parcel_type}</td>
       <td>{new Date(requested_delivery_date).toLocaleDateString()}</td>
-      <td>{new Date(approximate_delivery_date).toLocaleDateString()}</td>
+      <td>
+        {approximate_delivery_date &&
+          new Date(approximate_delivery_date).toLocaleDateString()}
+      </td>
       <td>{new Date(booking_date).toLocaleDateString()}</td>
       <td>{deliverymen_id}</td>
       <td>
@@ -61,7 +68,11 @@ const MyParcelRow = ({ bookingParcel, idx, refetch }) => {
       </td>
       {status !== "delivered" ? (
         <td className="flex gap-3">
-          <EditAndDelete handleCancel={handleCancel} _id={_id} />
+          <EditAndDelete
+            handleCancel={handleCancel}
+            _id={_id}
+            status={status}
+          />
         </td>
       ) : (
         <td className="flex gap-3">

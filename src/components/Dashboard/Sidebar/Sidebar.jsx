@@ -11,11 +11,12 @@ import DeliverymenNavLinks from "./NavLinks/DeliverymenNavLinks";
 import AdminNavLinks from "./NavLinks/AdminNavLinks";
 import HeaderLink from "../../Shared/HeaderLink";
 import useUser from "../../../hooks/useUser";
+import useLogOut from "../../../hooks/useLogOut";
 
 const Sidebar = () => {
   const [isActive, setActive] = useState(false);
-  const { logOut } = useAuth();
   const { role } = useUser();
+  const handleLogOut = useLogOut();
 
   const handleToggle = () => {
     setActive(!isActive);
@@ -71,7 +72,11 @@ const Sidebar = () => {
               <p className="font-bold">Theme</p>
             </ul>
             <NavLinkSidebar address="" label="My Profile" icon={CgProfile} />
-            <NavLinkSidebar label="Logout" icon={CgLogOut} />
+            <NavLinkSidebar
+              label="Logout"
+              icon={CgLogOut}
+              handleLogOut={handleLogOut}
+            />
           </nav>
         </div>
       </div>

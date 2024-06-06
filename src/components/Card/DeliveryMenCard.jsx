@@ -1,9 +1,10 @@
 import { Rating } from "@smastrom/react-rating";
 import "@smastrom/react-rating/style.css";
-import { useState } from "react";
+import LoadingSpinner from "../Shared/LoadingSpinner";
 
-const DeliveryMenCard = () => {
-  const [rating, setRating] = useState(4);
+const DeliveryMenCard = ({ deliverymen, isLoading }) => {
+  console.log(deliverymen);
+  const { name, photoURL, no_of_delivered_parcel } = deliverymen || {};
 
   const Star = (
     <path
@@ -22,27 +23,26 @@ const DeliveryMenCard = () => {
     inactiveFillColor: "#808080",
   };
 
+  if (isLoading) return <LoadingSpinner />;
+
   return (
-    <div className="max-w-md px-8 py-4 mt-16 rounded shadow-lg">
+    <div className="max-w-md px-8 py-4 mt-16 rounded shadow-lg bg-base-200">
       <div className="flex justify-center -mt-16 md:justify-start">
         <img
           className="object-cover w-32 h-32 border-2 border-[#F43F5E] rounded-full"
           alt="Testimonial avatar"
-          src="https://images.unsplash.com/photo-1499714608240-22fc6ad53fb2?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=76&q=80"
+          src={photoURL}
         />
       </div>
       <div className="flex justify-start mt-4">
-        <a className="text-2xl font-medium text-[#F43F5E]">John Doe</a>
+        <a className="text-2xl font-medium text-[#F43F5E]">{name}</a>
       </div>
-      <p className="mt-2 text-lg font-medium">Parcel Delivered: 5</p>
+      <p className="mt-2 text-lg font-medium">
+        Parcel Delivered: {no_of_delivered_parcel}
+      </p>
       <div className="flex items-center  gap-4">
         <p className="text-lg font-medium">Rating:</p>
-        <Rating
-          style={{ maxWidth: 150 }}
-          value={rating}
-          onChange={setRating}
-          itemStyles={customStyles}
-        />
+        <Rating style={{ maxWidth: 150 }} value={4} itemStyles={customStyles} />
       </div>
     </div>
   );
