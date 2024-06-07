@@ -42,7 +42,7 @@ const DeliveryMenCard = ({ deliverymen, isLoading }) => {
       </p>
       <div className="flex items-center  gap-4">
         <p className="text-lg font-medium">Rating:</p>
-        <Rating style={{ maxWidth: 150 }} value={4} itemStyles={customStyles} />
+        <Rating style={{ maxWidth: 110 }} value={4} itemStyles={customStyles} />
       </div>
     </div>
   );
