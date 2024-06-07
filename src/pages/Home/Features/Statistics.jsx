@@ -11,13 +11,13 @@ const Statistics = () => {
   const { data: statistics } = useQuery({
     queryKey: ["stats"],
     queryFn: async () => {
-      const { data } = await axiosCommon("/stats");
+      const { data } = await axiosCommon("/statistics");
       return data;
     },
   });
 
-  const parcelBooked = statistics?.count || 0;
-  const parcelDelivered = statistics?.parcelStatus.length || 0;
+  const parcelBooked = statistics?.bookedParcel || 0;
+  const parcelDelivered = statistics?.parcelDelivered.length || 0;
   const totalUsers = statistics?.users || 0;
 
   return (

@@ -11,7 +11,7 @@ const StatisticsCard = ({ heading, count, inView }) => {
           <CountUp
             start={0}
             end={count}
-            duration={5}
+            duration={6}
             decimals={0}
             decimal=","
           ></CountUp>
