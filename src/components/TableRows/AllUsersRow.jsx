@@ -93,14 +93,14 @@ const AllUsersRow = ({ user, idx, refetch }) => {
         <button
           onClick={() => handleMakeDeliveryMen(email)}
           disabled={role === "Delivery Men" || role === "Admin"}
-          className="small-secondary-btn disabled:cursor-not-allowed"
+          className="small-secondary-btn"
         >
           Make Deliverymen
         </button>
         <button
           onClick={() => handleMakeAdmin(email)}
           disabled={role === "Delivery Men" || role === "Admin"}
-          className="small-primary-btn disabled:cursor-not-allowed"
+          className="small-primary-btn"
         >
           Make Admin
         </button>

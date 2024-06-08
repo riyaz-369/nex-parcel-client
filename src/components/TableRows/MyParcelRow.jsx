@@ -3,8 +3,11 @@ import toast from "react-hot-toast";
 import Swal from "sweetalert2";
 import EditAndDelete from "../Dashboard/Buttons/EditAndDelete";
 import ReviewAndPay from "../Dashboard/Buttons/ReviewAndPay";
+import { useState } from "react";
+import ReviewModal from "../Modals/ReviewModal";
 
 const MyParcelRow = ({ bookingParcel, idx, refetch }) => {
+  const [isOpen, setIsOpen] = useState(false);
   const axiosSecure = useAxiosSecure();
 
   const {
@@ -53,33 +56,46 @@ const MyParcelRow = ({ bookingParcel, idx, refetch }) => {
   } capitalize`;
 
   return (
-    <tr className="text-base" key={_id}>
-      <th>{idx + 1}</th>
-      <td>{parcel_type}</td>
-      <td>{new Date(requested_delivery_date).toLocaleDateString()}</td>
-      <td>
-        {approximate_delivery_date &&
-          new Date(approximate_delivery_date).toLocaleDateString()}
-      </td>
-      <td>{new Date(booking_date).toLocaleDateString()}</td>
-      <td>{deliverymen_id}</td>
-      <td>
-        <span className={statusStyle}>{status}</span>
-      </td>
-      {status !== "delivered" ? (
-        <td className="flex gap-3">
-          <EditAndDelete
-            handleCancel={handleCancel}
-            _id={_id}
-            status={status}
-          />
+    <>
+      <tr className="text-base" key={_id}>
+        <th>{idx + 1}</th>
+        <td>{parcel_type}</td>
+        <td>{new Date(requested_delivery_date).toLocaleDateString()}</td>
+        <td>
+          {approximate_delivery_date &&
+            new Date(approximate_delivery_date).toLocaleDateString()}
         </td>
-      ) : (
-        <td className="flex gap-3">
-          <ReviewAndPay />
+        <td>{new Date(booking_date).toLocaleDateString()}</td>
+        <td>{deliverymen_id}</td>
+        <td>
+          <span className={statusStyle}>{status}</span>
         </td>
-      )}
-    </tr>
+
+        {/* CONDITIONAL ACTIONS BUTTON */}
+        {status !== "delivered" ? (
+          <td className="flex gap-3">
+            <EditAndDelete
+              handleCancel={handleCancel}
+              _id={_id}
+              status={status}
+            />
+          </td>
+        ) : (
+          <td className="flex gap-3">
+            <ReviewAndPay isOpen={isOpen} setIsOpen={setIsOpen} />
+          </td>
+        )}
+      </tr>
+
+      {/* USERS REVIEW MODAL */}
+      <div>
+        <ReviewModal
+          isOpen={isOpen}
+          setIsOpen={setIsOpen}
+          deliverymen_id={deliverymen_id}
+        />
+      </div>
+    </>
   );
 };
 

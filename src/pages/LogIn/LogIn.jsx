@@ -9,7 +9,7 @@ import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 import Container from "../../components/Shared/Container";
 import GoogleLogInBtn from "../../components/Shared/GoogleLogInBtn";
-import CustomButton3 from "../../components/Shared/CustomButton3";
+import CustomButton from "../../components/Shared/CustomButton";
 
 const LogIn = () => {
   const { googleSignIn, signIn, saveUserInDB } = useAuth();
@@ -148,7 +148,7 @@ const LogIn = () => {
                   )}
                 </div>
                 <div className="mt-6">
-                  <CustomButton3 btnText="Login" wFull={true} />
+                  <CustomButton btnText="Login" wFull={true} />
                 </div>
               </form>
             </div>

@@ -1,12 +1,13 @@
-const ReviewAndPay = () => {
+const ReviewAndPay = ({ setIsOpen }) => {
   return (
     <div className="flex gap-2">
-      <button className="text-green-400 btn btn-sm disabled:cursor-not-allowed disabled:text-opacity-40">
+      <button onClick={() => setIsOpen(true)} className="small-secondary-btn">
         Review
       </button>
       <button
+        onClick={() => setIsOpen(true)}
         title="Cancel Booking"
-        className="text-red-400 btn btn-sm disabled:cursor-not-allowed disabled:text-opacity-40"
+        className="small-primary-btn"
       >
         Pay
       </button>

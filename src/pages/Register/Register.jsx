@@ -108,7 +108,7 @@ const Register = () => {
               {/* REGISTRATION FORM */}
               <form onSubmit={handleSubmit(handleRegister)}>
                 <div className="mt-4">
-                  <label className="block mb-2 text-sm font-medium text-gray-600">
+                  <label className="block mb-2 text-sm font-medium">
                     Full Name
                   </label>
                   <input
@@ -122,7 +122,7 @@ const Register = () => {
                   )}
                 </div>
                 <div className="mt-4">
-                  <label className="block mb-2 text-sm font-medium text-gray-600">
+                  <label className="block mb-2 text-sm font-medium">
                     Email
                   </label>
                   <input
@@ -138,7 +138,7 @@ const Register = () => {
 
                 <div className="lg:flex gap-4 mt-4">
                   <div className="lg:w-1/2">
-                    <label className="block mb-2 text-sm font-medium text-gray-600">
+                    <label className="block mb-2 text-sm font-medium">
                       Profile Picture
                     </label>
                     <input
@@ -153,7 +153,7 @@ const Register = () => {
                   </div>
                   {/* USER ROLE */}
                   <div className="lg:w-1/2 mt-4 lg:mt-0">
-                    <label className="block mb-2 text-sm font-medium text-gray-600">
+                    <label className="block mb-2 text-sm font-medium">
                       Role
                     </label>
                     <select
@@ -171,7 +171,7 @@ const Register = () => {
 
                 <div className="mt-4">
                   <div className="flex justify-between">
-                    <label className="block mb-2 text-sm font-medium text-gray-600">
+                    <label className="block mb-2 text-sm font-medium">
                       Password
                     </label>
                     <a className="text-xs text-gray-500 hover:underline">
