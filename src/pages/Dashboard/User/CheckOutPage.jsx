@@ -13,7 +13,6 @@ const CheckOutPage = () => {
 
   return (
     <div>
-      <h3 className="text-3xl font-semibold">Payment</h3>
       <Elements stripe={stripePromise}>
         <CheckOutForm price={price} />
       </Elements>

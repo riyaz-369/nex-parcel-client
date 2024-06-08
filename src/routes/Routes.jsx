@@ -19,6 +19,7 @@ import UpdateBooking from "../pages/Dashboard/User/UpdateBooking";
 import AdminRoute from "./AdminRoute";
 import DeliverymenRoute from "./DeliverymenRoute";
 import CheckOutPage from "../pages/Dashboard/User/CheckOutPage";
+import PaymentSuccessPage from "../pages/Dashboard/User/PaymentSuccessPage";
 
 const router = createBrowserRouter([
   {
@@ -86,6 +87,14 @@ const router = createBrowserRouter([
         element: (
           <PrivateRoute>
             <CheckOutPage />
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "payment-success",
+        element: (
+          <PrivateRoute>
+            <PaymentSuccessPage />
           </PrivateRoute>
         ),
       },

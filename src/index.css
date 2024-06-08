@@ -5,10 +5,10 @@
 @tailwind utilities;
 
 .small-primary-btn {
-  @apply text-[#F43F5E] btn btn-sm disabled:cursor-not-allowed disabled:text-opacity-40;
+  @apply text-[#F43F5E] btn btn-sm disabled:cursor-not-allowed disabled:text-opacity-40 shadow-md;
 }
 .small-secondary-btn {
-  @apply text-green-500 btn btn-sm disabled:cursor-not-allowed disabled:text-opacity-40;
+  @apply text-green-500 btn btn-sm disabled:cursor-not-allowed disabled:text-opacity-40 shadow-md;
 }
 .input-style {
   @apply block w-full px-4 py-3 border border-opacity-30 border-[#F43F5E] rounded-lg focus:border-[#F43F5E] focus:ring-opacity-40 focus:outline-none focus:ring focus:ring-[#F43F5E];
