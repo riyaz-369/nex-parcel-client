@@ -6,12 +6,14 @@ import Container from "../../../components/Shared/Container";
 import AllUsersRow from "../../../components/TableRows/AllUsersRow";
 import { useState } from "react";
 import Pagination from "../../../components/Dashboard/Paginations/Pagination";
+import useAuth from "../../../hooks/useAuth";
 
 const AllUsers = () => {
   const axiosSecure = useAxiosSecure();
   const [itemPerPage] = useState(5);
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsCount, setItemsCount] = useState(0);
+  const { loading } = useAuth();
 
   const {
     data: allUsers = [],
@@ -35,7 +37,7 @@ const AllUsers = () => {
     setCurrentPage(page);
   };
 
-  if (isLoading) return <LoadingSpinner />;
+  if (isLoading || loading) return <LoadingSpinner />;
 
   return (
     <section>

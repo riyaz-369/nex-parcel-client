@@ -1,10 +1,19 @@
+import { useQuery } from "@tanstack/react-query";
 import DeliveryMenCard from "../../../components/Card/DeliveryMenCard";
 import Container from "../../../components/Shared/Container";
 import SectionTitle from "../../../components/Shared/SectionTitle";
-import useAllDeliveryMen from "../../../hooks/useAllDeliveryMen";
+import useAxiosCommon from "../../../hooks/useAxiosCommon";
 
 const DeliveryMen = () => {
-  const { allDeliverymen, isLoading } = useAllDeliveryMen();
+  const axiosCommon = useAxiosCommon();
+
+  const { data: topDeliveryMen = [], isLoading } = useQuery({
+    queryKey: ["deliverymen"],
+    queryFn: async () => {
+      const { data } = await axiosCommon("/deliverymen");
+      return data;
+    },
+  });
 
   return (
     <Container my={true}>
@@ -13,7 +22,7 @@ const DeliveryMen = () => {
         subtitle="Our top delivery men"
       />
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {allDeliverymen.map((deliverymen) => (
+        {topDeliveryMen.map((deliverymen) => (
           <DeliveryMenCard
             deliverymen={deliverymen}
             isLoading={isLoading}

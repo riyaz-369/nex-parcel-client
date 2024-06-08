@@ -29,6 +29,8 @@ const ManageBookingModal = ({
   const { register, handleSubmit, reset } = useForm();
   const { allDeliverymen } = useAllDeliveryMen();
 
+  console.log(allDeliverymen);
+
   const handleAssign = async (formData) => {
     const manageBookingData = {
       deliverymen_id: formData.deliverymen_id,

@@ -9,9 +9,9 @@ const Statistics = () => {
   const { ref, inView } = useInView({ triggerOnce: true });
 
   const { data: statistics } = useQuery({
-    queryKey: ["stats"],
+    queryKey: ["home-stats"],
     queryFn: async () => {
-      const { data } = await axiosCommon("/statistics");
+      const { data } = await axiosCommon("/home-stats");
       return data;
     },
   });
