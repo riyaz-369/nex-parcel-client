@@ -18,6 +18,7 @@ import AdminStatistics from "../pages/Dashboard/Admin/AdminStatistics";
 import UpdateBooking from "../pages/Dashboard/User/UpdateBooking";
 import AdminRoute from "./AdminRoute";
 import DeliverymenRoute from "./DeliverymenRoute";
+import CheckOutPage from "../pages/Dashboard/User/CheckOutPage";
 
 const router = createBrowserRouter([
   {
@@ -79,6 +80,14 @@ const router = createBrowserRouter([
         ),
         loader: ({ params }) =>
           fetch(`${import.meta.env.VITE_API_URL}/booking/${params.id}`),
+      },
+      {
+        path: "checkout",
+        element: (
+          <PrivateRoute>
+            <CheckOutPage />
+          </PrivateRoute>
+        ),
       },
 
       // DELIVERY MAN

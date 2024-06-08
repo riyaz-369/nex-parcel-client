@@ -18,7 +18,10 @@ const MyParcelRow = ({ bookingParcel, idx, refetch }) => {
     booking_date,
     deliverymen_id,
     status,
+    price,
   } = bookingParcel || {};
+
+  console.log(price);
 
   const handleCancel = async (id) => {
     const doCancel = async () => {
@@ -82,7 +85,7 @@ const MyParcelRow = ({ bookingParcel, idx, refetch }) => {
           </td>
         ) : (
           <td className="flex gap-3">
-            <ReviewAndPay isOpen={isOpen} setIsOpen={setIsOpen} />
+            <ReviewAndPay isOpen={isOpen} setIsOpen={setIsOpen} price={price} />
           </td>
         )}
       </tr>
