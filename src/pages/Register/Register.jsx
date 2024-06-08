@@ -14,7 +14,14 @@ import useAxiosCommon from "../../hooks/useAxiosCommon";
 import GoogleLogInBtn from "../../components/Shared/GoogleLogInBtn";
 
 const Register = () => {
-  const { createUser, updatedProfile, googleSignIn, saveUserInDB } = useAuth();
+  const {
+    createUser,
+    updatedProfile,
+    googleSignIn,
+    saveUserInDB,
+    loading,
+    setLoading,
+  } = useAuth();
   const [showPassword, setShowPassword] = useState(false);
   const axiosCommon = useAxiosCommon();
   const navigate = useNavigate();
@@ -31,7 +38,6 @@ const Register = () => {
     const { name, email, password, role } = formData;
 
     try {
-      await createUser(email, password);
       const hostImage = await uploadImage(image);
       const userInfo = {
         name,
@@ -42,14 +48,16 @@ const Register = () => {
 
       const { data } = await axiosCommon.post("/users", userInfo);
       console.log(data);
+      if (data.message) return toast.error(data.message);
+
       if (data.insertedId) {
         reset();
+        await createUser(email, password);
+        await updatedProfile(name, hostImage);
         toast.success("Registration successful.");
         navigate("/");
+        setLoading(false);
       }
-
-      // update user profile
-      await updatedProfile(name, hostImage);
     } catch (err) {
       toast.error(err.message);
       console.log(err);
@@ -137,8 +145,11 @@ const Register = () => {
                       type="file"
                       name="image"
                       className="px-4 py-2 w-full border-2 border-dashed rounded-lg border-[#F43F5E] bg-[#F43F5E] bg-opacity-10"
-                      {...register("image")}
+                      {...register("image", { required: true })}
                     />
+                    {errors.image?.type === "required" && (
+                      <p className="text-red-600">Please choose a image file</p>
+                    )}
                   </div>
                   {/* USER ROLE */}
                   <div className="lg:w-1/2 mt-4 lg:mt-0">

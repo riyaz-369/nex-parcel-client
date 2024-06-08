@@ -3,6 +3,7 @@ import ManageBookingModal from "../Modals/ManageBookingModal";
 import { useState } from "react";
 
 const AllBookingRow = ({ booking, idx, refetch }) => {
+  const [isOpen, setIsOpen] = useState(false);
   const {
     _id,
     name,
@@ -12,7 +13,6 @@ const AllBookingRow = ({ booking, idx, refetch }) => {
     price,
     status,
   } = booking;
-  const [isOpen, setIsOpen] = useState(false);
 
   const statusStyle = `rounded-full text-sm font-medium bg-opacity-20 px-2 py-[3px] ${
     status === "pending" && "bg-[#ffc107]"

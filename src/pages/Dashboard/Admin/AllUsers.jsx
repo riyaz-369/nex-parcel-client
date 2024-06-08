@@ -44,7 +44,7 @@ const AllUsers = () => {
         <Helmet>
           <title>Dashboard - All Users</title>
         </Helmet>
-        <div className="border">
+        <div className="">
           <table className="table">
             <thead>
               <tr className="text-base">

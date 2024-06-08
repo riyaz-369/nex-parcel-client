@@ -104,7 +104,7 @@ const BookParcel = () => {
                 render={({ field }) => (
                   <PhoneInput
                     {...field}
-                    className={`$"input-style" focus:border-none`}
+                    className="input-style focus:border-none"
                     placeholder="Enter Your Phone Number"
                     defaultCountry="BD"
                   />

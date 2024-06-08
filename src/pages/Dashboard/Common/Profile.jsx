@@ -19,6 +19,7 @@ const Profile = () => {
   const handleUploadProfile = async (data) => {
     const image = data.image[0];
     if (!image) return toast.error("You did't upload your image");
+    setLoading(false);
 
     try {
       setLoading(true);
@@ -63,7 +64,6 @@ const Profile = () => {
               <span className="ml-2">{dbUser?.email}</span>
             </div>
             <span className="text-orange-400">
-              {" "}
               <MdEmail size={20} />
             </span>
           </div>
@@ -78,7 +78,7 @@ const Profile = () => {
           </div>
         </div>
         <form onSubmit={handleSubmit(handleUploadProfile)}>
-          <div className="flex justify-center mt-6 gap-2">
+          <div className="flex justify-center my-4 gap-3">
             <div className="lg:w-1/2">
               <input
                 type="file"
@@ -88,7 +88,7 @@ const Profile = () => {
               />
             </div>
             <CustomButton
-              btnText="Upload"
+              btnText={loading ? "Uploading..." : "Upload"}
               icon={loading ? FaSpinner : MdCloudUpload}
               loading={loading}
             />

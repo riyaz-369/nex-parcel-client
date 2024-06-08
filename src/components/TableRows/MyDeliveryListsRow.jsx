@@ -3,8 +3,11 @@ import Swal from "sweetalert2";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import toast from "react-hot-toast";
 import useAuth from "../../hooks/useAuth";
+import { useState } from "react";
+import MapModal from "../Modals/MapModal";
 
 const MyDeliveryListsRow = ({ delivery, refetch, idx }) => {
+  const [isOpen, setIsOpen] = useState(false);
   const axiosSecure = useAxiosSecure();
   const { user } = useAuth();
 
@@ -87,8 +90,10 @@ const MyDeliveryListsRow = ({ delivery, refetch, idx }) => {
         <td>{receiver_phone_number}</td>
         <td>
           <span>{delivery_address}</span>
+
           {/* MAP BUTTON */}
           <button
+            onClick={() => setIsOpen(true)}
             title="View Location"
             className="btn btn-sm btn-ghost text-red-500"
           >
@@ -114,6 +119,7 @@ const MyDeliveryListsRow = ({ delivery, refetch, idx }) => {
           </button>
         </td>
       </tr>
+      <MapModal delivery={delivery} isOpen={isOpen} setIsOpen={setIsOpen} />
     </>
   );
 };
