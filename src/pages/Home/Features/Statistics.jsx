@@ -21,11 +21,11 @@ const Statistics = () => {
   const totalUsers = statistics?.users || 0;
 
   return (
-    <div className="my-8">
+    <div className="my-16">
       <div className="flex justify-center items-center">
         <div
           ref={ref}
-          className="text-center flex items-center space-y-4 md:space-y-0 py-6 px-6 md:py-12 lg:py-20 w-full rounded flex-col md:flex-row md:flex justify-center md:justify-around mx-auto shadow-md bg-[#111827]"
+          className="text-center flex items-center space-y-4 md:space-y-0 py-6 px-6 md:py-12 lg:py-20 w-full rounded-xl flex-col md:flex-row md:flex justify-center md:justify-around mx-auto shadow-md bg-[#111827]"
         >
           <StatisticsCard
             inView={inView}

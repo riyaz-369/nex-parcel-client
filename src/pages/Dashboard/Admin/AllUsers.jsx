@@ -53,7 +53,7 @@ const AllUsers = () => {
                 <th>SL</th>
                 <th>Name</th>
                 <th>Role</th>
-                <th>Phone Number</th>
+                <th>Email Address</th>
                 <th>Number of parcel Booked</th>
                 <th>Total Spent Amount</th>
               </tr>

@@ -2,8 +2,8 @@ import { Rating } from "@smastrom/react-rating";
 import "@smastrom/react-rating/style.css";
 import LoadingSpinner from "../Shared/LoadingSpinner";
 
-const DeliveryMenCard = ({ deliverymen, isLoading }) => {
-  const { name, photoURL, no_of_delivered_parcel, rating } = deliverymen || {};
+const ReviewCard = ({ review, isLoading }) => {
+  const { name, photoURL, date, rating, feedback } = review || {};
 
   const Star = (
     <path
@@ -25,30 +25,31 @@ const DeliveryMenCard = ({ deliverymen, isLoading }) => {
   if (isLoading) return <LoadingSpinner />;
 
   return (
-    <div className="card rounded-lg shadow-lg border border-[#F43F5E] border-opacity-25  hover:shadow-2xl overflow-hidden max-w-lg mx-auto min-w-full transform transition duration-200 hover:scale-105 hover:border hover:border-[#F43F5E]">
-      <figure>
+    <div className="max-w-md px-8 py-4 mt-16 shadow-lg hover:shadow-xl transition-all bg-[#F43F5E] bg-opacity-5 hover:bg-opacity-10 rounded-lg space-y-2">
+      <div className="flex justify-center -mt-16 md:justify-start">
         <img
-          className="object-cover object-center w-full h-72"
+          className="object-cover w-32 h-32 border-2 border-[#F43F5E] rounded-full"
           src={photoURL}
-          alt="Deliveryman"
         />
-      </figure>
-      <div className="card-body">
-        <h2 className="text-2xl font-bold">{name}</h2>
-        <p className="font-sans font-semibold">
-          Parcel Delivered: {no_of_delivered_parcel}
-        </p>
-        <div className="flex">
-          <p className="font-sans font-semibold">Rating:</p>
-          <Rating
-            style={{ maxWidth: 130 }}
-            value={rating}
-            itemStyles={customStyles}
-          />
-        </div>
       </div>
+
+      <p className="text-2xl font-medium text-[#F43F5E]">{name}</p>
+      <p className="font-medium">
+        Giving Date: {new Date(date).toLocaleDateString() || "N/A"}
+      </p>
+      <div className="flex items-center gap-1">
+        <p className="font-medium">Rating: {rating}</p>
+        <Rating
+          style={{ maxWidth: 100 }}
+          value={rating}
+          itemStyles={customStyles}
+        />
+      </div>
+      <p className="font-medium">
+        Feedback: <span className="font-normal">{feedback || "N/A"}</span>
+      </p>
     </div>
   );
 };
 
-export default DeliveryMenCard;
+export default ReviewCard;

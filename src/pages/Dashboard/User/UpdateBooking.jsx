@@ -36,9 +36,7 @@ const UpdateBooking = () => {
     status,
   } = bookingData || {};
 
-  const [startDate, setStartDate] = useState(
-    new Date(requested_delivery_date) || new Date()
-  );
+  const [startDate, setStartDate] = useState(new Date(requested_delivery_date));
   const [parcelPrice, setParcelPrice] = useState(price);
 
   const handleUpdate = async (formData) => {
@@ -54,7 +52,7 @@ const UpdateBooking = () => {
         toast.success("Your parcel updated successfully");
         navigate("/dashboard/my-parcel");
       } else {
-        toast.error("You haven't change any information");
+        toast.error("You did't change any information");
       }
     } catch (err) {
       toast.error(err.message);
@@ -93,9 +91,7 @@ const UpdateBooking = () => {
         <form onSubmit={handleSubmit(handleUpdate)} className="px-2 lg:px-0">
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-x-4">
             <div className="mt-6">
-              <label className="block mb-2 text-sm font-medium text-gray-600">
-                Name
-              </label>
+              <label className="lev">Name</label>
               <input
                 className={inputStyle}
                 type="text"
@@ -106,9 +102,7 @@ const UpdateBooking = () => {
             </div>
 
             <div className="mt-6">
-              <label className="block mb-2 text-sm font-medium text-gray-600">
-                Email
-              </label>
+              <label className="lev">Email</label>
               <input
                 className={inputStyle}
                 type="text"
@@ -119,9 +113,7 @@ const UpdateBooking = () => {
             </div>
 
             <div className="mt-6">
-              <label className="block mb-2 text-sm font-medium text-gray-600">
-                Phone Number
-              </label>
+              <label className="lev">Phone Number</label>
               <Controller
                 name="phone_number"
                 control={control}
@@ -139,9 +131,7 @@ const UpdateBooking = () => {
             </div>
 
             <div className="mt-6">
-              <label className="block mb-2 text-sm font-medium text-gray-600">
-                Parcel Type
-              </label>
+              <label className="lev">Parcel Type</label>
               <input
                 className={inputStyle}
                 type="text"
@@ -152,9 +142,7 @@ const UpdateBooking = () => {
             </div>
             {/* Parcel Weight */}
             <div className="mt-6">
-              <label className="block mb-2 text-sm font-medium text-gray-600">
-                Parcel Weight
-              </label>
+              <label className="lev">Parcel Weight</label>
               <input
                 className={inputStyle}
                 type="number"
@@ -165,9 +153,7 @@ const UpdateBooking = () => {
             </div>
 
             <div className="mt-6">
-              <label className="block mb-2 text-sm font-medium text-gray-600">
-                Price
-              </label>
+              <label className="lev">Price</label>
               <input
                 className={inputStyle}
                 type="number"
@@ -178,9 +164,7 @@ const UpdateBooking = () => {
             </div>
 
             <div className="mt-6">
-              <label className="block mb-2 text-sm font-medium text-gray-600">
-                Receiver Name
-              </label>
+              <label className="lev">Receiver Name</label>
               <input
                 className={inputStyle}
                 type="text"
@@ -191,9 +175,7 @@ const UpdateBooking = () => {
             </div>
 
             <div className="mt-6">
-              <label className="block mb-2 text-sm font-medium text-gray-600">
-                Receiver Phone Number
-              </label>
+              <label className="lev">Receiver Phone Number</label>
               <Controller
                 name="receiver_phone_number"
                 control={control}
@@ -211,9 +193,7 @@ const UpdateBooking = () => {
             </div>
 
             <div className="mt-6">
-              <label className="block mb-2 text-sm font-medium text-gray-600">
-                Requested Delivery Date
-              </label>
+              <label className="lev">Requested Delivery Date</label>
               {/* date picker input */}
               <ReactDatePicker
                 className={inputStyle}
@@ -223,9 +203,7 @@ const UpdateBooking = () => {
             </div>
 
             <div className="mt-6">
-              <label className="block mb-2 text-sm font-medium text-gray-600">
-                Delivery Address
-              </label>
+              <label className="lev">Delivery Address</label>
               <input
                 className={inputStyle}
                 type="text"
@@ -236,9 +214,7 @@ const UpdateBooking = () => {
             </div>
 
             <div className="mt-6">
-              <label className="block mb-2 text-sm font-medium text-gray-600">
-                Delivery Address Latitude
-              </label>
+              <label className="lev">Delivery Address Latitude</label>
               <input
                 className={inputStyle}
                 type="text"
@@ -249,9 +225,7 @@ const UpdateBooking = () => {
             </div>
 
             <div className="mt-6">
-              <label className="block mb-2 text-sm font-medium text-gray-600">
-                Delivery Address Longitude
-              </label>
+              <label className="lev">Delivery Address Longitude</label>
               <input
                 className={inputStyle}
                 type="text"

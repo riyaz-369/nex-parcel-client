@@ -11,23 +11,23 @@ const Features = () => {
     <Container my={true}>
       <SectionTitle
         heading="Our Features"
-        subtitle="Lorem ipsum dolor sit amet consectetur, adipisicing elit. Maiores optio accusantium labore tenetur officiis culpa in a sint eveniet, nisi maxime veritatis doloribus"
+        subtitle="Our service ensures fast delivery, low cost, and top-notch parcel safety. Enjoy quick and affordable shipping with the confidence that your items are secure every step of the way."
       />
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
         <FeaturedCard
           img={icon1}
           title="Fast Delivery"
-          subtitle="jflasdfjlsdfjslddkkfjlsdkkjfalsdkkfjlaskdjsdflj"
+          subtitle="Swift and reliable delivery to get your parcels to their destinations quickly"
         />
         <FeaturedCard
           img={icon2}
           title="Low Cost"
-          subtitle="jflasdfjlsdfjslddkkfjlsdkkjfalsdkkfjlaskdjsdflj"
+          subtitle="Affordable shipping options that provide great value without compromising quality."
         />
         <FeaturedCard
           img={icon3}
           title="Parcel Safety"
-          subtitle="jflasdfjlsdfjslddkkfjlsdkkjfalsdkkfjlaskdjsdflj"
+          subtitle="Secure handling and protection to ensure your parcels arrive safely and intact."
         />
       </div>
       <Statistics />

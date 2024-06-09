@@ -55,7 +55,7 @@ const LogIn = () => {
   };
 
   return (
-    <div className="bg-base-200 py-8">
+    <div className="bg-[#F43F5E]  bg-opacity-5 py-8">
       <div>
         <Helmet>
           <title>NexParcel - Register</title>

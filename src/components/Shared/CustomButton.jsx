@@ -4,15 +4,13 @@ const CustomButton = ({
   pxLg,
   icon: Icon,
   btnSm,
-  btn2,
   loading,
+  handleNavigate,
 }) => {
   return (
     <button
-      className={`${
-        btn2 ? "bg-green-500" : "bg-[#F43F5E]"
-      } relative border-none border-4 hover:bg-[#111827] text-white disabled:cursor-not-allowed disabled:bg-opacity-40 flex h-[50px] items-center justify-center
-      overflow-hidden shadow-xl transition-all before:absolute before:h-0 before:w-0 before:rounded-full before:bg-[#111827] before:duration-500 before:ease-out hover:shadow-[#11182760] hover:before:h-24 hover:before:w-24
+      onClick={handleNavigate}
+      className={`bg-[#F43F5E] relative border-none border-4 hover:bg-[#111827] text-white disabled:cursor-not-allowed disabled:bg-opacity-40 flex h-[50px] items-center justify-center overflow-hidden shadow-xl transition-all before:absolute before:h-0 before:w-0 before:rounded-full before:bg-[#111827] before:duration-500 before:ease-out hover:shadow-[#11182760] hover:before:h-24 hover:before:w-24
       ${
         btnSm
           ? "py-[2px] px-[10px] text-base"

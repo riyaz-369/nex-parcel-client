@@ -21,8 +21,6 @@ const MyParcelRow = ({ bookingParcel, idx, refetch }) => {
     price,
   } = bookingParcel || {};
 
-  console.log(price);
-
   const handleCancel = async (id) => {
     const doCancel = async () => {
       try {

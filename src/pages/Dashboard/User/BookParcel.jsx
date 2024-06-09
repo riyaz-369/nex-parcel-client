@@ -34,6 +34,9 @@ const BookParcel = () => {
         toast.success("Booked your parcel successfully");
         navigate("/dashboard/my-parcel");
       }
+
+      const response = await axiosSecure.put(`/users/${user?.email}`);
+      console.log(response.data);
     } catch (err) {
       toast.error(err.message);
     }
@@ -68,9 +71,7 @@ const BookParcel = () => {
         <form onSubmit={handleSubmit(handleBook)} className="px-2 lg:px-0">
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-x-4">
             <div className="mt-6">
-              <label className="block mb-2 text-sm font-medium text-gray-600">
-                Name
-              </label>
+              <label className="block mb-2 text-sm font-medium">Name</label>
               <input
                 className="input-style"
                 type="text"
@@ -81,9 +82,7 @@ const BookParcel = () => {
             </div>
 
             <div className="mt-6">
-              <label className="block mb-2 text-sm font-medium text-gray-600">
-                Email
-              </label>
+              <label className="block mb-2 text-sm font-medium">Email</label>
               <input
                 className="input-style"
                 type="text"
@@ -94,7 +93,7 @@ const BookParcel = () => {
             </div>
 
             <div className="mt-6">
-              <label className="block mb-2 text-sm font-medium text-gray-600">
+              <label className="block mb-2 text-sm font-medium">
                 Phone Number
               </label>
               <Controller
@@ -113,7 +112,7 @@ const BookParcel = () => {
             </div>
 
             <div className="mt-6">
-              <label className="block mb-2 text-sm font-medium text-gray-600">
+              <label className="block mb-2 text-sm font-medium">
                 Parcel Type
               </label>
               <input
@@ -125,7 +124,7 @@ const BookParcel = () => {
             </div>
             {/* Parcel Weight */}
             <div className="mt-6">
-              <label className="block mb-2 text-sm font-medium text-gray-600">
+              <label className="block mb-2 text-sm font-medium">
                 Parcel Weight
               </label>
               <input
@@ -137,9 +136,7 @@ const BookParcel = () => {
             </div>
 
             <div className="mt-6">
-              <label className="block mb-2 text-sm font-medium text-gray-600">
-                Price
-              </label>
+              <label className="block mb-2 text-sm font-medium">Price</label>
               <input
                 className="input-style"
                 type="number"
@@ -150,7 +147,7 @@ const BookParcel = () => {
             </div>
 
             <div className="mt-6">
-              <label className="block mb-2 text-sm font-medium text-gray-600">
+              <label className="block mb-2 text-sm font-medium">
                 Receiver Name
               </label>
               <input
@@ -162,7 +159,7 @@ const BookParcel = () => {
             </div>
 
             <div className="mt-6">
-              <label className="block mb-2 text-sm font-medium text-gray-600">
+              <label className="block mb-2 text-sm font-medium">
                 Receiver Phone Number
               </label>
               <Controller
@@ -181,7 +178,7 @@ const BookParcel = () => {
             </div>
 
             <div className="mt-6">
-              <label className="block mb-2 text-sm font-medium text-gray-600">
+              <label className="block mb-2 text-sm font-medium">
                 Requested Delivery Date
               </label>
               {/* date picker input */}
@@ -193,7 +190,7 @@ const BookParcel = () => {
             </div>
 
             <div className="mt-6">
-              <label className="block mb-2 text-sm font-medium text-gray-600">
+              <label className="block mb-2 text-sm font-medium">
                 Delivery Address
               </label>
               <input
@@ -205,7 +202,7 @@ const BookParcel = () => {
             </div>
 
             <div className="mt-6">
-              <label className="block mb-2 text-sm font-medium text-gray-600">
+              <label className="block mb-2 text-sm font-medium">
                 Delivery Address Latitude
               </label>
               <input
@@ -217,7 +214,7 @@ const BookParcel = () => {
             </div>
 
             <div className="mt-6">
-              <label className="block mb-2 text-sm font-medium text-gray-600">
+              <label className="block mb-2 text-sm font-medium">
                 Delivery Address Longitude
               </label>
               <input

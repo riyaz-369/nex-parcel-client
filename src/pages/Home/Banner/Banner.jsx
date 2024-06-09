@@ -1,24 +1,48 @@
-import banner from "../../../assets/banner.jpg";
+import Container from "../../../components/Shared/Container";
 import CustomButton from "../../../components/Shared/CustomButton";
+import deliverymenImg from "../../../assets/banner/deliverymen.png";
+import { useNavigate } from "react-router-dom";
 
 const Banner = () => {
+  const navigate = useNavigate();
+
+  const handleNavigate = () => {
+    navigate("/dashboard/book-parcel");
+  };
+
   return (
-    <div
-      className="hero bg-no-repeat bg-cover h-[300px] lg:h-[800px]"
-      style={{ backgroundImage: `url(${banner})` }}
-    >
-      <div className="hero-overlay opacity-95"></div>
-      <div className="hero-content text-center text-white">
+    <div className="bg-[#F43F5E]  bg-opacity-5 min-h-max relative">
+      <Container>
         <div className="">
-          <h1 className="mb-5 text-5xl font-bold">We Deliver Your Parcel</h1>
-          <p className="mb-5">
-            Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda
-            excepturi exercitationem quasi. In deleniti eaque aut repudiandae et
-            a id nisi.
-          </p>
-          <CustomButton btnText="Search" />
+          <div className="hero-content flex-col md:flex-row-reverse">
+            <div>
+              <img
+                src={deliverymenImg}
+                className="max-w-sm md:max-w-md lg:max-w-xl"
+              />
+            </div>
+            <div className="text-center md:text-start">
+              <h1 className="text-5xl lg:text-6xl">
+                <span className="font-sans font-semibold">We Are</span>{" "}
+                <span className="font-bold ">Deliver</span>{" "}
+                <span className="font-semibold font-sans">Your</span>{" "}
+                <span className="text-[#F43F5E] font-bold ">Parcel</span>
+              </h1>
+              <p className="py-6 max-w-md text-base-content text-opacity-80">
+                We ensure swift and secure delivery of your parcels, providing
+                reliable service you can trust. Our dedicated team handles every
+                package with care.
+              </p>
+              <div className="flex gap-4">
+                <CustomButton
+                  btnText="Book Parcel"
+                  handleNavigate={handleNavigate}
+                />
+              </div>
+            </div>
+          </div>
         </div>
-      </div>
+      </Container>
     </div>
   );
 };

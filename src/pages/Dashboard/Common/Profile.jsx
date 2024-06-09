@@ -18,7 +18,7 @@ const Profile = () => {
 
   const handleUploadProfile = async (data) => {
     const image = data.image[0];
-    if (!image) return toast.error("You did't upload your image");
+    if (!image) return toast.error("You did't select any image");
     setLoading(false);
 
     try {

@@ -23,11 +23,14 @@ const ReviewModal = ({ isOpen, setIsOpen, deliverymen_id }) => {
   } = useForm();
 
   const handleReviewSubmit = async (formData) => {
+    const rating = parseFloat(formData.rating);
+
     const reviewData = {
       name: user?.displayName,
       photoURL: user?.photoURL,
-      rating: parseFloat(formData.rating),
+      rating,
       feedback: formData.feedback,
+      date: new Date(),
       deliverymen_id,
     };
 
@@ -39,6 +42,8 @@ const ReviewModal = ({ isOpen, setIsOpen, deliverymen_id }) => {
         setIsOpen(false);
         reset();
       }
+
+      axiosSecure.put(`/user-rating/${deliverymen_id}`, { rating });
     } catch (err) {
       toast.error(err.message);
       console.log(err);
@@ -64,7 +69,7 @@ const ReviewModal = ({ isOpen, setIsOpen, deliverymen_id }) => {
                 leaveFrom="opacity-100"
                 leaveTo="opacity-0"
               >
-                <DialogPanel className="w-full max-w-md transform rounded-2xl bg-base-200 p-6 text-left align-middle shadow-xl transition-all">
+                <DialogPanel className="w-full max-w-md transform rounded-2xl bg-base-200  p-6 text-left align-middle shadow-xl transition-all">
                   <div className="flex justify-end">
                     <button
                       onClick={() => setIsOpen(false)}
@@ -117,7 +122,7 @@ const ReviewModal = ({ isOpen, setIsOpen, deliverymen_id }) => {
                       <input
                         className="input-style"
                         type="number"
-                        placeholder="Out of 5.00"
+                        placeholder="Out of 5"
                         {...register("rating", {
                           required: true,
                           min: 1,
@@ -128,10 +133,10 @@ const ReviewModal = ({ isOpen, setIsOpen, deliverymen_id }) => {
                         <p className="text-red-600">Rating is required</p>
                       )}
                       {errors.rating?.type == "min" && (
-                        <p className="text-red-600">Rating minimum 1.00</p>
+                        <p className="text-red-600">Rating minimum 1</p>
                       )}
                       {errors.rating?.type === "max" && (
-                        <p className="text-red-600">Rating maximum 5.00</p>
+                        <p className="text-red-600">Rating maximum 5</p>
                       )}
                     </div>
                     <div className="mt-4">

@@ -1,13 +1,13 @@
 import { useQuery } from "@tanstack/react-query";
-import useAxiosSecure from "./useAxiosSecure";
+import useAxiosCommon from "./useAxiosCommon";
 
 const useAllDeliveryMen = () => {
-  const axiosSecure = useAxiosSecure();
+  const axiosCommon = useAxiosCommon();
 
   const { data: allDeliverymen = [], isLoading } = useQuery({
     queryKey: ["deliverymen"],
     queryFn: async () => {
-      const { data } = await axiosSecure("/deliverymen");
+      const { data } = await axiosCommon("/deliverymen");
       return data;
     },
   });

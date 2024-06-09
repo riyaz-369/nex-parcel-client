@@ -5,23 +5,17 @@ import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { Link, useNavigate } from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
 import { useState } from "react";
-import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 import Container from "../../components/Shared/Container";
 import CustomButton from "../../components/Shared/CustomButton";
 import uploadImage from "../../apis/utilitis";
 import useAxiosCommon from "../../hooks/useAxiosCommon";
 import GoogleLogInBtn from "../../components/Shared/GoogleLogInBtn";
+import { useForm } from "react-hook-form";
 
 const Register = () => {
-  const {
-    createUser,
-    updatedProfile,
-    googleSignIn,
-    saveUserInDB,
-    loading,
-    setLoading,
-  } = useAuth();
+  const { createUser, updatedProfile, googleSignIn, saveUserInDB, setLoading } =
+    useAuth();
   const [showPassword, setShowPassword] = useState(false);
   const axiosCommon = useAxiosCommon();
   const navigate = useNavigate();
@@ -77,7 +71,7 @@ const Register = () => {
   };
 
   return (
-    <div className="bg-base-200 py-8">
+    <div className="bg-[#F43F5E]  bg-opacity-5 py-8">
       <div>
         <Helmet>
           <title>NexParcel - Register</title>
@@ -93,8 +87,8 @@ const Register = () => {
               </p>
               <GoogleLogInBtn handleGoogleSignIn={handleGoogleSignIn} />
               <div className="flex items-center justify-between mt-4">
-                <span className="w-1/5 border-b border-gray-600 md:w-1/4"></span>
-                <span className="text-base text-gray-500">
+                <span className="w-1/5 border-b md:w-1/4"></span>
+                <span className="text-base">
                   Already have an account?{" "}
                   <Link
                     to="/login"
@@ -103,7 +97,7 @@ const Register = () => {
                     Login
                   </Link>
                 </span>
-                <span className="w-1/5 border-b border-gray-600 md:w-1/4"></span>
+                <span className="w-1/5 border-b md:w-1/4"></span>
               </div>
               {/* REGISTRATION FORM */}
               <form onSubmit={handleSubmit(handleRegister)}>
@@ -174,9 +168,7 @@ const Register = () => {
                     <label className="block mb-2 text-sm font-medium">
                       Password
                     </label>
-                    <a className="text-xs text-gray-500 hover:underline">
-                      Forget Password?
-                    </a>
+                    <a className="text-xs hover:underline">Forget Password?</a>
                   </div>
                   <div className="relative flex items-center mt-2">
                     <span

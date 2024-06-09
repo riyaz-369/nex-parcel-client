@@ -1,10 +1,8 @@
 import { useState } from "react";
-import useAuth from "../../../hooks/useAuth";
 import { FiAlignRight } from "react-icons/fi";
 import { RxCross2 } from "react-icons/rx";
 import NavLinkSidebar from "../../Shared/NavLinkSidebar";
 import { CgLogOut, CgProfile } from "react-icons/cg";
-
 import ThemeInput from "../../Theme/ThemeInput";
 import UserNavLinks from "./NavLinks/UserNavLinks";
 import DeliverymenNavLinks from "./NavLinks/DeliverymenNavLinks";
@@ -17,7 +15,6 @@ const Sidebar = () => {
   const [isActive, setActive] = useState(false);
   const { role } = useUser();
   const handleLogOut = useLogOut();
-
   const handleToggle = () => {
     setActive(!isActive);
   };

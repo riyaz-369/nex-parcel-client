@@ -42,7 +42,7 @@ const PaymentSuccessPage = () => {
         </div>
         <div className="flex justify-center space-x-4">
           <button onClick={handleViewParcel} className="small-secondary-btn">
-            View Parcel
+            Give Rating
           </button>
           <button onClick={handleBackToHome} className="small-primary-btn">
             Back to Home

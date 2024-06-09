@@ -17,7 +17,7 @@ const AllBookingRow = ({ booking, idx, refetch }) => {
   const statusStyle = `rounded-full text-sm font-medium bg-opacity-20 px-2 py-[3px] ${
     status === "pending" && "bg-[#ffc107]"
   } ${status === "on the way" && "bg-[#28a745] px-2 text-[15px]"} ${
-    status === "delivered" && "bg-blue-100 bg-opacity-100"
+    status === "delivered" && "bg-blue-300 bg-opacity-100"
   } ${status === "returned" && "bg-[#d93025]"} ${
     status === "cancelled" && "bg-red-400"
   } capitalize`;

@@ -21,7 +21,7 @@ const DeliveryMen = () => {
         heading="Top Delivery Mens"
         subtitle="Our top delivery men"
       />
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
         {topDeliveryMen.map((deliverymen) => (
           <DeliveryMenCard
             deliverymen={deliverymen}

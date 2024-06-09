@@ -5,15 +5,10 @@ import Swal from "sweetalert2";
 const AllUsersRow = ({ user, idx, refetch }) => {
   const axiosSecure = useAxiosSecure();
 
-  const {
-    _id,
-    name,
-    email,
-    role,
-    phone_number,
-    number_of_parcel_booked,
-    spent_amount,
-  } = user;
+  const { _id, name, email, role, number_of_parcel_booked, spent_amount } =
+    user;
+
+  console.log(user);
 
   // MAKE DELIVERY MEN
   const handleMakeDeliveryMen = async (email) => {
@@ -86,8 +81,8 @@ const AllUsersRow = ({ user, idx, refetch }) => {
       <th>{idx + 1}</th>
       <td>{name}</td>
       <td>{role}</td>
-      <td>{phone_number}</td>
-      <td>{number_of_parcel_booked}</td>
+      <td>{email || "N/A"}</td>
+      <td>{number_of_parcel_booked || 0}</td>
       <td>{spent_amount}</td>
       <td className="flex gap-3">
         <button
