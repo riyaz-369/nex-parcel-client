@@ -22,18 +22,24 @@ const Banner = () => {
               />
             </div>
             <div className="text-center md:text-start">
-              <h1 className="text-5xl lg:text-6xl">
+              <h1 data-aos="fade-up" className="text-5xl lg:text-6xl">
                 <span className="font-sans font-semibold">We Are</span>{" "}
                 <span className="font-bold ">Deliver</span>{" "}
                 <span className="font-semibold font-sans">Your</span>{" "}
                 <span className="text-[#F43F5E] font-bold ">Parcel</span>
               </h1>
-              <p className="py-6 max-w-md text-sm md:text-base text-base-content text-opacity-80">
+              <p
+                data-aos="fade-up"
+                className="py-6 max-w-md text-sm md:text-base text-base-content text-opacity-80"
+              >
                 We ensure swift and secure delivery of your parcels, providing
                 reliable service you can trust. Our dedicated team handles every
                 package with care.
               </p>
-              <div className="flex gap-4 justify-center md:justify-start">
+              <div
+                data-aos="fade-right"
+                className="flex gap-4 justify-center md:justify-start"
+              >
                 <CustomButton
                   btnText="Book Parcel"
                   handleNavigate={handleNavigate}

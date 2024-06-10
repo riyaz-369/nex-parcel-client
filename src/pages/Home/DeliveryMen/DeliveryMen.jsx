@@ -18,8 +18,8 @@ const DeliveryMen = () => {
   return (
     <Container my={true}>
       <SectionTitle
-        heading="Top Delivery Mens"
-        subtitle="Our top delivery men"
+        heading="Top 3 Delivery Men"
+        subtitle="Discover the top three delivery men who have consistently excelled in customer satisfaction, timely deliveries, and exceptional service. These outstanding individuals stand out for their dedication, reliability, and professionalism in ensuring each parcel reaches its destination efficiently and securely."
       />
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
         {topDeliveryMen.slice(0, 3).map((deliverymen) => (

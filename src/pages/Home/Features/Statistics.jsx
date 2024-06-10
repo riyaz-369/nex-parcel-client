@@ -21,7 +21,7 @@ const Statistics = () => {
   const totalUsers = statistics?.users || 0;
 
   return (
-    <div className="my-16">
+    <div data-aos="fade-up" className="my-16">
       <div className="flex justify-center items-center">
         <div
           ref={ref}

@@ -1,6 +1,9 @@
 const FeaturedCard = ({ img, title, subtitle }) => {
   return (
-    <div className="shadow-lg p-6 rounded-xl h-96 border border-[#F43F5E] border-opacity-25 flex flex-col items-center justify-center transition-transform transform duration-300 hover:border hover:border-[#F43F5E] md:hover:scale-105 hover:shadow-2xl hover:bg-[#F43F5E] hover:bg-opacity-10">
+    <div
+      data-aos="fade-down-right"
+      className="shadow-lg p-6 rounded-xl h-96 border border-[#F43F5E] border-opacity-25 flex flex-col items-center justify-center transition-transform transform duration-300 hover:border hover:border-[#F43F5E] md:hover:scale-105 hover:shadow-2xl hover:bg-[#F43F5E] hover:bg-opacity-10"
+    >
       <figure className="overflow-hidden rounded-xl">
         <img className="w-32" src={img} />
       </figure>
