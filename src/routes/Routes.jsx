@@ -47,7 +47,7 @@ const router = createBrowserRouter([
     children: [
       // COMMON
       {
-        index: true,
+        path: "profile",
         element: (
           <PrivateRoute>
             <Profile />

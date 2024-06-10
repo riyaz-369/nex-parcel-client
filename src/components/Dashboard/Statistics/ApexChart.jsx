@@ -25,7 +25,7 @@ const ApexChart = ({ statisticsInfo }) => {
   ];
 
   return (
-    <div className="p-8 shadow-lg rounded-lg space-y-8 bg-white">
+    <div className="p-8 shadow-md rounded-lg space-y-8 bg-white">
       <div>
         <Chart
           options={barOptions}

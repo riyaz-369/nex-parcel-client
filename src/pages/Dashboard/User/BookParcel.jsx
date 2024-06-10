@@ -64,11 +64,11 @@ const BookParcel = () => {
   return (
     <Container>
       <div>
-        <h4 className="text-3xl">Book a parcel</h4>
+        <h4 className="text-3xl font-semibold">Book a parcel</h4>
         <Helmet>
           <title>Book a Parcel</title>
         </Helmet>
-        <form onSubmit={handleSubmit(handleBook)} className="px-2 lg:px-0">
+        <form onSubmit={handleSubmit(handleBook)} className="">
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-x-4">
             <div className="mt-6">
               <label className="block mb-2 text-sm font-medium">Name</label>

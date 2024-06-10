@@ -2,19 +2,19 @@ import { useState } from "react";
 import { FiAlignRight } from "react-icons/fi";
 import { RxCross2 } from "react-icons/rx";
 import NavLinkSidebar from "../../Shared/NavLinkSidebar";
-import { CgLogOut, CgProfile } from "react-icons/cg";
+import { CgProfile } from "react-icons/cg";
 import ThemeInput from "../../Theme/ThemeInput";
 import UserNavLinks from "./NavLinks/UserNavLinks";
 import DeliverymenNavLinks from "./NavLinks/DeliverymenNavLinks";
 import AdminNavLinks from "./NavLinks/AdminNavLinks";
 import HeaderLink from "../../Shared/HeaderLink";
 import useUser from "../../../hooks/useUser";
-import useLogOut from "../../../hooks/useLogOut";
+import LogOutBtn from "../../Shared/LogOutBtn";
 
 const Sidebar = () => {
   const [isActive, setActive] = useState(false);
   const { role } = useUser();
-  const handleLogOut = useLogOut();
+
   const handleToggle = () => {
     setActive(!isActive);
   };
@@ -68,12 +68,12 @@ const Sidebar = () => {
               <ThemeInput />
               <p className="font-bold">Theme</p>
             </ul>
-            <NavLinkSidebar address="" label="My Profile" icon={CgProfile} />
             <NavLinkSidebar
-              label="Logout"
-              icon={CgLogOut}
-              handleLogOut={handleLogOut}
+              address="profile"
+              label="My Profile"
+              icon={CgProfile}
             />
+            <LogOutBtn />
           </nav>
         </div>
       </div>

@@ -1,10 +1,10 @@
 import { useQuery } from "@tanstack/react-query";
 import useAuth from "./useAuth";
-import useAxiosSecure from "./useAxiosSecure";
+import useAxiosCommon from "./useAxiosCommon";
 
 const useUser = () => {
   const { user } = useAuth();
-  const axiosSecure = useAxiosSecure();
+  const axiosCommon = useAxiosCommon();
 
   const {
     data: dbUser,
@@ -13,7 +13,7 @@ const useUser = () => {
   } = useQuery({
     queryKey: ["user", user?.email],
     queryFn: async () => {
-      const { data } = await axiosSecure(`/user/${user?.email}`);
+      const { data } = await axiosCommon(`/user/${user?.email}`);
       return data;
     },
   });

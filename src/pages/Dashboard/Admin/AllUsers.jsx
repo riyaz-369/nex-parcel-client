@@ -42,11 +42,11 @@ const AllUsers = () => {
   return (
     <section>
       <Container>
-        <h4 className="text-3xl">All Users: {itemsCount}</h4>
+        <h4 className="text-3xl mb-5">All Users: {itemsCount}</h4>
         <Helmet>
           <title>Dashboard - All Users</title>
         </Helmet>
-        <div className="">
+        <div className="overflow-x-auto">
           <table className="table">
             <thead>
               <tr className="text-base">
@@ -54,8 +54,7 @@ const AllUsers = () => {
                 <th>Name</th>
                 <th>Role</th>
                 <th>Email Address</th>
-                <th>Number of parcel Booked</th>
-                <th>Total Spent Amount</th>
+                <th>Parcel Booked</th>
               </tr>
             </thead>
             <tbody>

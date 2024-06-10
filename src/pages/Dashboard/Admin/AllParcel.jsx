@@ -43,7 +43,7 @@ const AllParcel = () => {
         <div className="flex justify-center lg:justify-start items-center gap-5 shadow-md p-5">
           {/* DATE INPUT FORM */}
           <div className="flex justify-center items-center gap-4">
-            <div className="">
+            <div>
               <label className="text-sm font-medium mr-2">From date</label>
               {/* date picker input */}
               <ReactDatePicker
@@ -53,7 +53,7 @@ const AllParcel = () => {
                 placeholderText="Select date"
               />
             </div>
-            <div className="">
+            <div>
               <label className="text-sm font-medium mr-2">To date</label>
               <ReactDatePicker
                 className="input-style"
@@ -67,36 +67,38 @@ const AllParcel = () => {
           {/* RESET BUTTON */}
           <button
             onClick={handleReset}
-            className="flex btn items-center font-medium tracking-wider text-white uppercase duration-300 bg-[#F43F5E] hover:bg-[#dd3854] rounded-lg"
+            className="flex btn items-center font-medium tracking-wider text-white uppercase duration-300 bg-[#F43F5E] hover:bg-[#dd3854] rounded-lg mt-5 lg:mt-0"
           >
             <GrPowerReset size={16} /> <span>Reset</span>
           </button>
         </div>
       </div>
-      <table className="table">
-        <thead>
-          <tr className="text-base">
-            <th>SL</th>
-            <th>Booked By</th>
-            <th>Phone Number</th>
-            <th>Booking Date</th>
-            <th>Requested Delivery Date</th>
-            <th>Cost</th>
-            <th>Status</th>
-            <th>Actions</th>
-          </tr>
-        </thead>
-        <tbody>
-          {allBookings.map((booking, idx) => (
-            <AllBookingRow
-              key={booking._id}
-              booking={booking}
-              idx={idx}
-              refetch={refetch}
-            />
-          ))}
-        </tbody>
-      </table>
+      <div className="overflow-x-auto">
+        <table className="table">
+          <thead>
+            <tr className="text-base">
+              <th>SL</th>
+              <th>Booked By</th>
+              <th>Phone Number</th>
+              <th>Booking Date</th>
+              <th>Requested Delivery Date</th>
+              <th>Cost</th>
+              <th>Status</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            {allBookings.map((booking, idx) => (
+              <AllBookingRow
+                key={booking._id}
+                booking={booking}
+                idx={idx}
+                refetch={refetch}
+              />
+            ))}
+          </tbody>
+        </table>
+      </div>
     </div>
   );
 };

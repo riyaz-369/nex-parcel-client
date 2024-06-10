@@ -5,19 +5,24 @@ import NavLinks from "../../../components/Shared/NavLinks";
 import { Link } from "react-router-dom";
 import ProfileDropdown from "../../../components/Dropdown/ProfileDropdown";
 import HeaderLink from "../../../components/Shared/HeaderLink";
-import useLogOut from "../../../hooks/useLogOut";
 import Container from "../../../components/Shared/Container";
 import notification from "../../../assets/icons/notification-50.png";
+import ThemeInput from "../../../components/Theme/ThemeInput";
+import DashboardBtn from "../../../components/Shared/DashboardBtn";
 
 const Navbar = () => {
   const { user } = useAuth();
 
-  const handleLogOut = useLogOut();
-
   const navLinks = (
     <>
       <NavLinks address="/" label="Home" />
-      <NavLinks address="/dashboard" label="Dashboard" />
+
+      {/* Dashboard button */}
+      <DashboardBtn homeBtn={true} />
+      <div className="flex justify-between lg:hidden">
+        <h4 className="font-bold text-base">Theme</h4>
+        <ThemeInput />
+      </div>
       {!user ? (
         <div className="space-y-3 lg:hidden">
           <Link to="/login">
@@ -64,6 +69,11 @@ const Navbar = () => {
                 </ul>
               </div>
               <div className="flex items-center gap-2">
+                {!user && (
+                  <div className="hidden lg:flex ">
+                    <ThemeInput />
+                  </div>
+                )}
                 <img className="h-7 w-7 lg:mr-2" src={notification} />
 
                 {/* CONDITIONAL USER PROFILE */}
@@ -74,7 +84,7 @@ const Navbar = () => {
                     </Link>
                   </div>
                 ) : (
-                  <ProfileDropdown handleLogOut={handleLogOut} />
+                  <ProfileDropdown />
                 )}
               </div>
             </div>

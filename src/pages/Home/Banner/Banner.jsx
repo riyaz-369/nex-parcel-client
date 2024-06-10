@@ -28,12 +28,12 @@ const Banner = () => {
                 <span className="font-semibold font-sans">Your</span>{" "}
                 <span className="text-[#F43F5E] font-bold ">Parcel</span>
               </h1>
-              <p className="py-6 max-w-md text-base-content text-opacity-80">
+              <p className="py-6 max-w-md text-sm md:text-base text-base-content text-opacity-80">
                 We ensure swift and secure delivery of your parcels, providing
                 reliable service you can trust. Our dedicated team handles every
                 package with care.
               </p>
-              <div className="flex gap-4">
+              <div className="flex gap-4 justify-center md:justify-start">
                 <CustomButton
                   btnText="Book Parcel"
                   handleNavigate={handleNavigate}

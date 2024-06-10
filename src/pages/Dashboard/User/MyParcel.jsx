@@ -69,30 +69,32 @@ const MyParcel = () => {
           </button>
         </div>
       </div>
-      <table className="table">
-        <thead>
-          <tr className="text-base">
-            <th>SL</th>
-            <th>Parcel Type</th>
-            <th>Requested Delivery Date</th>
-            <th>Approximate Delivery Date</th>
-            <th>Booking Date</th>
-            <th>Delivery Men ID</th>
-            <th>Status</th>
-            <th>Actions</th>
-          </tr>
-        </thead>
-        <tbody>
-          {myBookings.map((bookingParcel, idx) => (
-            <MyParcelRow
-              key={bookingParcel._id}
-              bookingParcel={bookingParcel}
-              idx={idx}
-              refetch={refetch}
-            />
-          ))}
-        </tbody>
-      </table>
+      <div className="overflow-x-auto">
+        <table className="table">
+          <thead>
+            <tr className="text-base">
+              <th>SL</th>
+              <th>Parcel Type</th>
+              <th>Requested Delivery Date</th>
+              <th>Approximate Delivery Date</th>
+              <th>Booking Date</th>
+              <th>Delivery Men ID</th>
+              <th>Status</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            {myBookings.map((bookingParcel, idx) => (
+              <MyParcelRow
+                key={bookingParcel._id}
+                bookingParcel={bookingParcel}
+                idx={idx}
+                refetch={refetch}
+              />
+            ))}
+          </tbody>
+        </table>
+      </div>
     </div>
   );
 };

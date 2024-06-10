@@ -88,7 +88,7 @@ const UpdateBooking = () => {
         <Helmet>
           <title>Book a Parcel</title>
         </Helmet>
-        <form onSubmit={handleSubmit(handleUpdate)} className="px-2 lg:px-0">
+        <form onSubmit={handleSubmit(handleUpdate)}>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-x-4">
             <div className="mt-6">
               <label className="lev">Name</label>

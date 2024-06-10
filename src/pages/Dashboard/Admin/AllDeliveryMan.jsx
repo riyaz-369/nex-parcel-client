@@ -12,30 +12,34 @@ const AllDeliveryMan = () => {
   return (
     <div>
       <Container>
-        <h4 className="text-3xl">All Deliverymen: {allDeliverymen?.length}</h4>
+        <h4 className="text-3xl mb-5">
+          All Deliverymen: {allDeliverymen?.length}
+        </h4>
         <Helmet>
           <title>Dashboard - All Deliverymen</title>
         </Helmet>
-        <table className="table">
-          <thead>
-            <tr className="text-base">
-              <th>SL</th>
-              <th>Name</th>
-              <th>Phone Number</th>
-              <th>Number of Parcel Delivered</th>
-              <th>Average Review</th>
-            </tr>
-          </thead>
-          <tbody>
-            {allDeliverymen.map((deliverymen, idx) => (
-              <AllDeliverymenRow
-                key={deliverymen._id}
-                deliverymen={deliverymen}
-                idx={idx}
-              />
-            ))}
-          </tbody>
-        </table>
+        <div className="overflow-x-auto">
+          <table className="table">
+            <thead>
+              <tr className="text-base">
+                <th>SL</th>
+                <th>Name</th>
+                <th>Phone Number</th>
+                <th>Number of Parcel Delivered</th>
+                <th>Average Review</th>
+              </tr>
+            </thead>
+            <tbody>
+              {allDeliverymen.map((deliverymen, idx) => (
+                <AllDeliverymenRow
+                  key={deliverymen._id}
+                  deliverymen={deliverymen}
+                  idx={idx}
+                />
+              ))}
+            </tbody>
+          </table>
+        </div>
       </Container>
     </div>
   );

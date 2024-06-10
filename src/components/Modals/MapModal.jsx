@@ -8,6 +8,7 @@ import {
 import { MapContainer, Marker, Popup, TileLayer, useMap } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 import { useEffect } from "react";
+import Container from "../Shared/Container";
 
 const MapUpdater = ({ center }) => {
   const map = useMap();
@@ -42,7 +43,7 @@ const MapModal = ({ isOpen, setIsOpen, delivery }) => {
                 leaveFrom="opacity-100 scale-100"
                 leaveTo="opacity-0 scale-95"
               >
-                <DialogPanel className="w-full max-w-lg transform overflow-hidden rounded-2xl bg-white p-6 shadow-xl transition-all">
+                <DialogPanel className="w-full max-w-lg transform overflow-hidden rounded-2xl bg-base-200 p-6 shadow-xl transition-all">
                   <div className="flex justify-between mb-4">
                     <div>
                       <h2 className="text-xl font-semibold">

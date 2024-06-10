@@ -10,7 +10,7 @@ import useUser from "../../../hooks/useUser";
 import LoadingSpinner from "../../../components/Shared/LoadingSpinner";
 
 const Profile = () => {
-  const { user, loading, setLoading } = useAuth();
+  const { user, loading, setLoading, updatedProfile } = useAuth();
   const axiosSecure = useAxiosSecure();
   const { dbUser, userLoading, refetch } = useUser();
 
@@ -29,9 +29,10 @@ const Profile = () => {
       });
 
       if (data.modifiedCount > 0) {
-        setLoading(false);
         toast.success("Successfully update your profile.");
+        await updatedProfile(user?.displayName, hostImage);
         refetch();
+        setLoading(false);
       }
     } catch (err) {
       toast.error(err.message);

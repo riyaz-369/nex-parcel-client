@@ -119,7 +119,9 @@ const MyDeliveryListsRow = ({ delivery, refetch, idx }) => {
           </button>
         </td>
       </tr>
-      <MapModal delivery={delivery} isOpen={isOpen} setIsOpen={setIsOpen} />
+      <div className="overflow-hidden">
+        <MapModal delivery={delivery} isOpen={isOpen} setIsOpen={setIsOpen} />
+      </div>
     </>
   );
 };

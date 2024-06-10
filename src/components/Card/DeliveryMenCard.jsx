@@ -25,7 +25,7 @@ const DeliveryMenCard = ({ deliverymen, isLoading }) => {
   if (isLoading) return <LoadingSpinner />;
 
   return (
-    <div className="card rounded-lg shadow-lg border border-[#F43F5E] border-opacity-25  hover:shadow-2xl overflow-hidden max-w-lg mx-auto min-w-full transform transition duration-200 hover:scale-105 hover:border hover:border-[#F43F5E]">
+    <div className="card rounded-lg shadow-lg border border-[#F43F5E] border-opacity-25  hover:shadow-2xl overflow-hidden max-w-lg mx-auto min-w-full transform transition duration-200 lg:hover:scale-105 hover:border hover:border-[#F43F5E] hover:bg-[#F43F5E] hover:bg-opacity-10">
       <figure>
         <img
           className="object-cover object-center w-full h-72"

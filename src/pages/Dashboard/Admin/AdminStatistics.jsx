@@ -18,7 +18,7 @@ const AdminStatistics = () => {
 
   return (
     <div>
-      <h4 className="text-3xl font-semibold">Parcel Booking Statistics</h4>
+      <h4 className="text-3xl font-semibold mb-5">Parcel Booking Statistics</h4>
       <div>
         <ApexChart statisticsInfo={statisticsInfo} />
       </div>
