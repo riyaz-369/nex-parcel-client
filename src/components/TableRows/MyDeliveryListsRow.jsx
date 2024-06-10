@@ -25,10 +25,8 @@ const MyDeliveryListsRow = ({ delivery, refetch, idx }) => {
 
   const handleDeliveredCount = async () => {
     try {
-      const { data } = await axiosSecure.put(`/user/${user?.email}`);
-      console.log(data);
+      await axiosSecure.put(`/user/${user?.email}`);
     } catch (err) {
-      console.log(err.message);
       toast.error(err.message);
     }
   };
@@ -44,7 +42,6 @@ const MyDeliveryListsRow = ({ delivery, refetch, idx }) => {
         handleDeliveredCount();
       }
     } catch (err) {
-      console.log(err.message);
       toast.error(err.message);
     }
   };
@@ -60,7 +57,6 @@ const MyDeliveryListsRow = ({ delivery, refetch, idx }) => {
           refetch();
         }
       } catch (err) {
-        console.log(err.message);
         toast.error(err.message);
       }
     };

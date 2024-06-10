@@ -36,7 +36,7 @@ const ReviewModal = ({ isOpen, setIsOpen, deliverymen_id }) => {
 
     try {
       const { data } = await axiosSecure.post("/reviews", reviewData);
-      console.log(data);
+
       if (data.insertedId) {
         toast.success("Thank you! for submit your review");
         setIsOpen(false);
@@ -46,7 +46,6 @@ const ReviewModal = ({ isOpen, setIsOpen, deliverymen_id }) => {
       axiosSecure.put(`/user-rating/${deliverymen_id}`, { rating });
     } catch (err) {
       toast.error(err.message);
-      console.log(err);
     }
   };
 

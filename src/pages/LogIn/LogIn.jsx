@@ -10,9 +10,10 @@ import toast from "react-hot-toast";
 import Container from "../../components/Shared/Container";
 import GoogleLogInBtn from "../../components/Shared/GoogleLogInBtn";
 import CustomButton from "../../components/Shared/CustomButton";
+import { FaSpinner } from "react-icons/fa";
 
 const LogIn = () => {
-  const { googleSignIn, signIn, saveUserInDB } = useAuth();
+  const { googleSignIn, signIn, saveUserInDB, loading, setLoading } = useAuth();
   const [showPassword, setShowPassword] = useState(false);
   const navigate = useNavigate();
   const location = useLocation();
@@ -29,15 +30,19 @@ const LogIn = () => {
     const { email, password } = formData;
 
     try {
+      setLoading(true);
       await signIn(email, password);
       reset();
       toast.success("Login successful.");
+      setLoading(false);
       navigate(from, { replace: true });
     } catch (err) {
       if (err.code) {
         toast.error("Invalid email or password");
+        setLoading(false);
       } else {
         toast.error(err.message);
+        setLoading(false);
       }
     }
   };
@@ -148,7 +153,12 @@ const LogIn = () => {
                   )}
                 </div>
                 <div className="mt-6">
-                  <CustomButton btnText="Login" wFull={true} />
+                  <CustomButton
+                    btnText={loading ? "" : "Login"}
+                    icon={loading && FaSpinner}
+                    loading={loading}
+                    wFull={true}
+                  />
                 </div>
               </form>
             </div>

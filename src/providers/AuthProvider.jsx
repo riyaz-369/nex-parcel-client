@@ -62,8 +62,7 @@ const AuthProvider = ({ children }) => {
 
     const getData = async () => {
       try {
-        const { data } = await axiosCommon.post("/users", userInfo);
-        console.log(data);
+        await axiosCommon.post("/users", userInfo);
       } catch (err) {
         toast.error(err.message);
       }
@@ -82,7 +81,6 @@ const AuthProvider = ({ children }) => {
       const getToken = async () => {
         try {
           const { data } = await axiosCommon.post("/jwt", userInfo);
-          console.log(data);
           localStorage.setItem("token", data.token);
         } catch (err) {
           toast.error(err.message);

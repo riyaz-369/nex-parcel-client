@@ -15,8 +15,6 @@ const MyReviews = () => {
     },
   });
 
-  console.log(reviews);
-
   return (
     <div>
       <h4 className="text-3xl">My reviews: {reviews.length}</h4>

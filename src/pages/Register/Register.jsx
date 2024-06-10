@@ -12,10 +12,17 @@ import uploadImage from "../../apis/utilitis";
 import useAxiosCommon from "../../hooks/useAxiosCommon";
 import GoogleLogInBtn from "../../components/Shared/GoogleLogInBtn";
 import { useForm } from "react-hook-form";
+import { FaSpinner } from "react-icons/fa";
 
 const Register = () => {
-  const { createUser, updatedProfile, googleSignIn, saveUserInDB, setLoading } =
-    useAuth();
+  const {
+    createUser,
+    updatedProfile,
+    googleSignIn,
+    saveUserInDB,
+    loading,
+    setLoading,
+  } = useAuth();
   const [showPassword, setShowPassword] = useState(false);
   const axiosCommon = useAxiosCommon();
   const navigate = useNavigate();
@@ -32,6 +39,7 @@ const Register = () => {
     const { name, email, password, role } = formData;
 
     try {
+      setLoading(true);
       const hostImage = await uploadImage(image);
       const userInfo = {
         name,
@@ -41,7 +49,6 @@ const Register = () => {
       };
 
       const { data } = await axiosCommon.post("/users", userInfo);
-      console.log(data);
       if (data.message) return toast.error(data.message);
 
       if (data.insertedId) {
@@ -54,7 +61,7 @@ const Register = () => {
       }
     } catch (err) {
       toast.error(err.message);
-      console.log(err);
+      setLoading(false);
     }
   };
 
@@ -209,7 +216,12 @@ const Register = () => {
                   )}
                 </div>
                 <div className="mt-6">
-                  <CustomButton btnText="Register" wFull={true} />
+                  <CustomButton
+                    btnText={loading ? "" : "Register"}
+                    icon={loading && FaSpinner}
+                    loading={loading}
+                    wFull={true}
+                  />
                 </div>
               </form>
             </div>

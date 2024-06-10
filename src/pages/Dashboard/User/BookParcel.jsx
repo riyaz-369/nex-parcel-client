@@ -35,8 +35,7 @@ const BookParcel = () => {
         navigate("/dashboard/my-parcel");
       }
 
-      const response = await axiosSecure.put(`/users/${user?.email}`);
-      console.log(response.data);
+      await axiosSecure.put(`/users/${user?.email}`);
     } catch (err) {
       toast.error(err.message);
     }

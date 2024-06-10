@@ -8,17 +8,13 @@ const AllUsersRow = ({ user, idx, refetch }) => {
   const { _id, name, email, role, number_of_parcel_booked, spent_amount } =
     user;
 
-  console.log(user);
-
   // MAKE DELIVERY MEN
   const handleMakeDeliveryMen = async (email) => {
-    console.log(email);
     const makeDeliverymen = async () => {
       try {
         const { data } = await axiosSecure.patch(`/users/${email}`, {
           role: "Delivery Men",
         });
-        console.log(data);
 
         if (data.modifiedCount > 0) {
           toast.success("Successful to make deliverymen");
@@ -45,13 +41,11 @@ const AllUsersRow = ({ user, idx, refetch }) => {
 
   // MAKE ADMIN
   const handleMakeAdmin = async (email) => {
-    console.log(email);
     const makeAdmin = async () => {
       try {
         const { data } = await axiosSecure.patch(`/users/${email}`, {
           role: "Admin",
         });
-        console.log(data);
 
         if (data.modifiedCount > 0) {
           toast.success("Successful to make admin");

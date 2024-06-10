@@ -25,7 +25,10 @@ const DeliveryMenCard = ({ deliverymen, isLoading }) => {
   if (isLoading) return <LoadingSpinner />;
 
   return (
-    <div className="card rounded-lg shadow-lg border border-[#F43F5E] border-opacity-25  hover:shadow-2xl overflow-hidden max-w-lg mx-auto min-w-full transform transition duration-200 lg:hover:scale-105 hover:border hover:border-[#F43F5E] hover:bg-[#F43F5E] hover:bg-opacity-10">
+    <div
+      data-aos="fade-up"
+      className="card rounded-lg shadow-lg border border-[#F43F5E] border-opacity-25  hover:shadow-2xl overflow-hidden max-w-lg mx-auto min-w-full transform transition duration-200 lg:hover:scale-105 hover:border hover:border-[#F43F5E] hover:bg-[#F43F5E] hover:bg-opacity-10"
+    >
       <figure>
         <img
           className="object-cover object-center w-full h-72"
@@ -39,7 +42,7 @@ const DeliveryMenCard = ({ deliverymen, isLoading }) => {
           Parcel Delivered: {no_of_delivered_parcel}
         </p>
         <div className="flex">
-          <p className="font-sans font-semibold">Rating:</p>
+          <p className="font-sans font-semibold">Rating: {rating || 0}.00</p>
           <Rating
             style={{ maxWidth: 130 }}
             value={rating}

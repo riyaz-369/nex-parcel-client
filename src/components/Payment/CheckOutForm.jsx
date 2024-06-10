@@ -51,7 +51,6 @@ const CheckOutForm = ({ price }) => {
     });
 
     if (error) {
-      console.log("Payment error:", error);
       setError(error.message);
       return;
     } else {
@@ -76,7 +75,6 @@ const CheckOutForm = ({ price }) => {
       toast.error(confirmError.message);
     } else {
       if (paymentIntent.status === "succeeded") {
-        console.log(paymentIntent.id);
         navigate("/dashboard/payment-success", {
           state: { transactionId: paymentIntent?.id },
         });

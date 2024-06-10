@@ -13,10 +13,7 @@ const Features = () => {
         heading="Our Features"
         subtitle="Our service ensures fast delivery, low cost, and top-notch parcel safety. Enjoy quick and affordable shipping with the confidence that your items are secure every step of the way."
       />
-      <div
-        data-aos="fade-up"
-        className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
-      >
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
         <FeaturedCard
           img={icon1}
           title="Fast Delivery"

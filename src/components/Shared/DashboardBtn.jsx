@@ -9,7 +9,7 @@ const DashboardBtn = ({ homeBtn, icon: Icon }) => {
     if (role === "Delivery Men") {
       navigate("/dashboard/my-delivery-list");
     } else if (role === "Admin") {
-      navigate("/dashboard/statistic");
+      navigate("/dashboard/statistics");
     } else {
       navigate("/dashboard/profile");
     }
